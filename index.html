@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,21 +14,42 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
     <style>
+        body {
+            background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Light-aluminum-Grey-Seamless-Pattern-For-Website-Background.jpg');
+            position: relative;
+        }
+
         .section-heading {
-            margin-bottom:0;
-            margin-top:50px;
+            margin-bottom: 0;
+            margin-top: 50px;
         }
-        .section-heading.bottom-margin{
-            margin-bottom:30px;
+
+        .section-heading.bottom-margin {
+            margin-bottom: 30px;
         }
+
         .section-question {
             font-style: italic;
-            margin-bottom:30px;
+            margin-bottom: 30px;
         }
-        ul.table-of-contents {
-            margin-top:30px;
+
+        nav {
+            width: 30rem;
+        }
+
+        #table-of-contents ul {
+            margin-top: 30px;
             list-style-type: none;
         }
+
+        #table-of-contents li {
+            padding: 5px 0;
+        }
+
+        #table-of-contents li.active a {
+            background-color: #eee;
+        }
+
         #toTop {
             padding: 10px;
             border-top-right-radius: 4px;
@@ -39,16 +61,29 @@
             right: 20px;
             display: none;
         }
+
         #toTop a, #toTop a:hover {
-            color:#fff;
+            color: #fff;
             text-decoration: none;
         }
+
         pre {
             margin: 30px 0;
         }
+
+        .container-fluid {
+            margin-left: 40rem;
+        }
+
+        h4 {
+            color: #0085ff;
+        }
+
+        .section-question {
+            color: #0085ff;
+            opacity: 0.7;
+        }
     </style>
-
-
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -58,83 +93,123 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-<div class="container">
+<body data-spy="scroll" data-target="#table-of-contents">
+<div class="col-sm-12">
+    <nav id="table-of-contents" class="affix">
+        <ul class="nav">
+            <li><a href="#sample-project">Where can I see the actual tests?</a></li>
+            <li><a href="#unit-testing">How does Karma differ from Protractor?</a></li>
+            <li><a href="#installing-karma">How do I install Karma?</a></li>
+            <li><a href="#configuring-karma">How do does Karma know which files to include?</a></li>
+            <li><a href="#basic-jasmine">How is a basic spec organized?</a></li>
+            <li><a href="#including-module">How do I inject a module in a spec?</a></li>
+            <li><a href="#testing-controller">How do I instantiate a controller in a spec?</a></li>
+            <li><a href="#including-service">How do I inject a service in a spec?</a></li>
+            <li><a href="#testing-template">How do I test if an element is in the DOM?</a></li>
+            <li><a href="#testing-route">How do I test route changes?</a></li>
+            <li><a href="#testing-directive">How do I set up a spec for a directive?</a></li>
+            <li><a href="#mocking">How/Why do I mock a service call in a controller spec?</a></li>
+            <li><a href="#spying-methods">How do I determine if one method successfully calls another method?</a></li>
+            <li><a href="#spying-methods">How do I determine what arguments were included when I call a method?</a></li>
+            <li><a href="#testing-promise">How do I handle async operations in a spec?</a></li>
+            <li><a href="#debugging">How do I troubleshoot problems with my specs?</a></li>
+            <li><a href="#best-practices">How do I know I am formatting my specs in the most efficient manner?</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12">
-            <h1>AngularJS Unit Testing Quick Start</h1>
+        <div class="col-sm-12">
 
-            <h4 class="section-heading">Table Of Contents</h4>
+            <div class="">
+                <h1>AngularJS Unit Testing Quick Start</h1>
+                <h4 class="section-heading" id="sample-project">Introduction</h4>
 
-            <ul class="table-of-contents">
-                <li><a href="#sample-project">Where can I see the actual tests?</a></li>
-                <li><a href="#unit-testing">How does Karma differ from Protractor?</a></li>
-                <li><a href="#installing-karma">How do I install Karma?</a></li>
-                <li><a href="#configuring-karma">How do does Karma know which files to include?</a></li>
-                <li><a href="#basic-jasmine">How is a basic spec organized?</a></li>
-                <li><a href="#including-module">How do I inject a module in a spec?</a></li>
-                <li><a href="#testing-controller">How do I instantiate a controller in a spec?</a></li>
-                <li><a href="#including-service">How do I inject a service in a spec?</a></li>
-                <li><a href="#testing-template">How do I test if an element is in the DOM?</a></li>
-                <li><a href="#testing-route">How do I test route changes?</a></li>
-                <li><a href="#testing-directive">How do I set up a spec for a directive?</a></li>
-                <li><a href="#mocking">How/Why do I mock a service call in a controller spec?</a></li>
-                <li><a href="#spying-methods">How do I determine if one method successfully calls another method?</a></li>
-                <li><a href="#spying-methods">How do I determine what arguments were included when I call a method?</a></li>
-                <li><a href="#testing-promise">How do I handle async operations in a spec?</a></li>
-                <li><a href="#debugging">How do I troubleshoot problems with my specs?</a></li>
-                <li><a href="#best-practices">How do I know I am formatting my specs in the most efficient manner?</a></li>
-            </ul>
+                <p class="section-question">Why are you doing this?</p>
 
-            <h4 class="section-heading" id="sample-project">Introduction</h4>
-            <p class="section-question">Why are you doing this?</p>
-            <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy, actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How do I instantiate my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
-            <p>I have since covered a lot of ground over the last couple years and I found that once you understand a few basic rules of engagement that testing in Angular is actually pretty straight forward and formulaic.</p>
-            <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so that developers can get to that first test without losing their mind</p>
-            <p>Please use this material as a bridge to making tests a natural part of your development process. Nothing would make me happier! Enjoy!</p>
+                <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers
+                    who are not writing enough (if any) tests for their application. Why is this? I believe that it is
+                    because that while testing Angular is easy, actually getting to that first step is hard. I remember
+                    the feeling of despair I felt the first time I was tasked with writing tests for a project I was on.
+                    Where do I start? How do I get this Karma thing to actually run? Find my files? How do I instantiate
+                    my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
 
-            <h4 class="section-heading" id="sample-project">The Sample Project</h4>
-            <p class="section-question">Where can I see the actual tests?</p>
-            <p>The companion repository for this quick start guide can be found here <a href="https://github.com/simpulton/angularjs-testing-quick-start">https://github.com/simpulton/angularjs-testing-quick-start</a></p>
+                <p>I have since covered a lot of ground over the last couple years and I found that once you understand
+                    a few basic rules of engagement that testing in Angular is actually pretty straight forward and
+                    formulaic.</p>
 
-            <h4 class="section-heading" id="unit-testing">Unit Testing vs E2E</h4>
-            <p class="section-question">How does Karma differ from Protractor?</p>
+                <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so
+                    that developers can get to that first test without losing their mind</p>
 
-            <p>I like to split my tests up into three different categories:</p>
+                <p>Please use this material as a bridge to making tests a natural part of your development process.
+                    Nothing would make me happier! Enjoy!</p>
 
-            <ol>
-                <li><strong>End­-to-­End Tests</strong> - These are the tests where you want to mimic an actual user that visits your website. Each test contains a series of simulated user events (ex. go to http://mysite.com/home and then click on the button with ID 'my­-button') and expected results (ex. after 200ms a new window should appear that says "Thank You").</li>
-                <li><strong>Integration Tests</strong> ­ These tests will call directly into your code. For example, you can use an integration test to call an Angular service. Typically each test will focus on one function. The test calls the target function with a set of parameters and then checks to make sure the results match expected values.</li>
-                <li><strong>Unit Tests</strong> ­ These are the same as integration tests except you take extra steps toensure that nothing is executed besides the one function you are testing. For example, when you test a service that uses $http to call a back end API, an integration test would include the API call. A unit test, however, would use a utility we will discuss later called $httpBackend to replace $http so that the code executed by the test is restricted to just the target function.</li>
-            </ol>
+                <h4 class="section-heading" id="sample-project">The Sample Project</h4>
 
-            <p>Protractor is the tool you will use for end-to-end tests while Karma handles integration and unit testing.</p>
+                <p class="section-question">Where can I see the actual tests?</p>
 
-            <h4 class="section-heading" id="installing-karma">Installing Karma</h4>
-            <p class="section-question">How do I install Karma?</p>
-            <pre><code class="js hljs javascript">npm install ­g karma</code></pre>
+                <p>The companion repository for this quick start guide can be found here <a
+                        href="https://github.com/simpulton/angularjs-testing-quick-start">https://github.com/simpulton/angularjs-testing-quick-start</a>
+                </p>
+
+                <h4 class="section-heading" id="unit-testing">Unit Testing vs E2E</h4>
+
+                <p class="section-question">How does Karma differ from Protractor?</p>
+
+                <p>I like to split my tests up into three different categories:</p>
+
+                <ol>
+                    <li><strong>End­-to-­End Tests</strong> - These are the tests where you want to mimic an actual user
+                        that visits your website. Each test contains a series of simulated user events (ex. go to
+                        http://mysite.com/home and then click on the button with ID 'my­-button') and expected results
+                        (ex. after 200ms a new window should appear that says "Thank You").
+                    </li>
+                    <li><strong>Integration Tests</strong> ­ These tests will call directly into your code. For example,
+                        you can use an integration test to call an Angular service. Typically each test will focus on
+                        one function. The test calls the target function with a set of parameters and then checks to
+                        make sure the results match expected values.
+                    </li>
+                    <li><strong>Unit Tests</strong> ­ These are the same as integration tests except you take extra
+                        steps toensure that nothing is executed besides the one function you are testing. For example,
+                        when you test a service that uses $http to call a back end API, an integration test would
+                        include the API call. A unit test, however, would use a utility we will discuss later called
+                        $httpBackend to replace $http so that the code executed by the test is restricted to just the
+                        target function.
+                    </li>
+                </ol>
+
+                <p>Protractor is the tool you will use for end-to-end tests while Karma handles integration and unit
+                    testing.</p>
+
+                <h4 class="section-heading" id="installing-karma">Installing Karma</h4>
+
+                <p class="section-question">How do I install Karma?</p>
+                <pre><code class="js hljs javascript">npm install ­g karma</code></pre>
 
 
-            <h4 class="section-heading" id="configuring-karma">Configuring Karma</h4>
-            <p class="section-question">How do does Karma know which files to include?</p>
-            <pre><code class="js hljs javascript">karma init karma.conf.js</code></pre>
+                <h4 class="section-heading" id="configuring-karma">Configuring Karma</h4>
 
-            <p>After installing Karma, we need to set up the karma.conf file.  The files array in karma.conf contains all the files needed to run a test. This includes:</p>
+                <p class="section-question">How do does Karma know which files to include?</p>
+                <pre><code class="js hljs javascript">karma init karma.conf.js</code></pre>
 
-            <ul>
-                <li>Any angular libraries used by your code</li>
-                <li>All your custom code</li>
-                <li>All your test specs</li>
-            </ul>
+                <p>After installing Karma, we need to set up the karma.conf file. The files array in karma.conf contains
+                    all the files needed to run a test. This includes:</p>
 
-            <p>Below is an example of a full karma.conf file.</p>
+                <ul>
+                    <li>Any angular libraries used by your code</li>
+                    <li>All your custom code</li>
+                    <li>All your test specs</li>
+                </ul>
+
+                <p>Below is an example of a full karma.conf file.</p>
 
 
           <pre><code class="js hljs javascript">
               <span class="hljs-comment">// Karma configuration</span>
               <span class="hljs-comment">// Generated on Sat Nov 08 2014 19:20:47 GMT-0700 (MST)</span>
 
-              <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
+              <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{
               config.set({
 
               <span class="hljs-comment">// base path that will be used to resolve all patterns (eg. files, exclude)</span>
@@ -216,44 +291,64 @@
               };
           </code></pre>
 
-            <p>Note that most values in the karma.conf file can be overridden at the command line. For example, if you wanted to run Firefox instead of Chrome you could either change the value in karma.conf or keep the value the same and use this command:</p>
+                <p>Note that most values in the karma.conf file can be overridden at the command line. For example, if
+                    you wanted to run Firefox instead of Chrome you could either change the value in karma.conf or keep
+                    the value the same and use this command:</p>
 
-            <pre><code lang="js" class="hljs nginx"><span class="hljs-title">karma</span> start ­­browsers Firefox</code></pre>
+                <pre><code lang="js" class="hljs nginx"><span class="hljs-title">karma</span> start ­­browsers
+                    Firefox</code></pre>
 
-            <p>I strongly suggest you take an existing karma.conf file like this one and adapt it to meet your needs. As long as you follow the conventions we outline in this guide, the only things you will likely want to change are:</p>
+                <p>I strongly suggest you take an existing karma.conf file like this one and adapt it to meet your
+                    needs. As long as you follow the conventions we outline in this guide, the only things you will
+                    likely want to change are:</p>
 
-            <ul>
-                <li>files ­ to include all your custom code, dependencies and test code</li>
-                <li>reporters ­ if you want test coverage you will need to include the 'coverage' reporter</li>
-                <li>autoWatch and singleRun ­ most of the time you will want autoWatch=true and singleRun=false so that Karma will automatically re­run your tests as you make changes. However, if you are running Karma as part of a script like a git hook or continuous integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
-            </ul>
+                <ul>
+                    <li>files ­ to include all your custom code, dependencies and test code</li>
+                    <li>reporters ­ if you want test coverage you will need to include the 'coverage' reporter</li>
+                    <li>autoWatch and singleRun ­ most of the time you will want autoWatch=true and singleRun=false so
+                        that Karma will automatically re­run your tests as you make changes. However, if you are running
+                        Karma as part of a script like a git hook or continuous integration, then you will want to flip
+                        these two boolean values so that Karma only runs the tests once.
+                    </li>
+                </ul>
 
-            <h4 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h4>
-            <p class="section-question">How is a basic spec organized?</p>
+                <h4 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h4>
 
-            <p><em>File Structure</em></p>
+                <p class="section-question">How is a basic spec organized?</p>
 
-            <p>In general, you want to have one test file for each and every non­test code file in your app. You should have a common naming scheme so that your build tools and test runners can pick out test files from non­test files. We are using one of the most common test file naming schemes: "{filename}.spec.js". So if you have a code file called "app.js", the file that contains all the tests for app.js would be called "app.spec.js". You will often see all test files in a separate directory from the rest of the code (usually called 'test'), but in the sample code we have put all specs right along side the code they are testing for your convenience.</p>
+                <p><em>File Structure</em></p>
 
-            <p><em>Spec Code Structure</em></p>
-            <p>In general, your spec files should follow this structure:</p>
+                <p>In general, you want to have one test file for each and every non­test code file in your app. You
+                    should have a common naming scheme so that your build tools and test runners can pick out test files
+                    from non­test files. We are using one of the most common test file naming schemes:
+                    "{filename}.spec.js". So if you have a code file called "app.js", the file that contains all the
+                    tests for app.js would be called "app.spec.js". You will often see all test files in a separate
+                    directory from the rest of the code (usually called 'test'), but in the sample code we have put all
+                    specs right along side the code they are testing for your convenience.</p>
+
+                <p><em>Spec Code Structure</em></p>
+
+                <p>In general, your spec files should follow this structure:</p>
 
           <pre><code class="js hljs javascript">
               <span class="hljs-comment">// src/app/app.spec.js</span>
               <span class="hljs-comment">// Containing describe block (or "suite"), usually named for an app feature.</span>
               <span class="hljs-comment">// In this case the feature is the App itself.</span>
-              describe(<span class="hljs-string">'Unit: App'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'Unit: App'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
               <span class="hljs-comment">// Include Modules</span>
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp'</span>));
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp.about'</span>));
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp.experiments'</span>));
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp.home'</span>));
-              beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp.models.messages'</span>));
+              beforeEach(<span class="hljs-built_in">module</span>(<span
+                  class="hljs-string">'myApp.models.messages'</span>));
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'ui.router'</span>));
 
               <span class="hljs-comment">// Suite for testing an individual piece of our feature.</span>
-              describe(<span class="hljs-string">'App Abstract Route'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'App Abstract Route'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
               <span class="hljs-comment">// Instantiate global variables (global to all tests in this describe block).</span>
               <span class="hljs-keyword">var</span> $state,
@@ -261,7 +356,8 @@
               state = <span class="hljs-string">'app'</span>;
 
               <span class="hljs-comment">// Inject dependencies</span>
-              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(_$state_, $templateCache, _$rootScope_)</span> </span>{
+              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(_$state_, $templateCache, _$rootScope_)</span> </span>{
               $state = _$state_;
               $rootScope = _$rootScope_;
               $templateCache.put(<span class="hljs-string">'app/home/home.tmpl.html'</span>, <span class="hljs-string">''</span>);
@@ -269,7 +365,8 @@
 
               <span class="hljs-comment">// It block (or "spec") to test expectations for the</span>
               <span class="hljs-comment">// Expectations return true or false.</span>
-              it(<span class="hljs-string">'verifies state configuration'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'verifies state configuration'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-keyword">var</span> config = $state.get(state);
               expect(config.abstract).toBeTruthy();
               expect(config.url).toBeUndefined();
@@ -278,61 +375,82 @@
               });
           </code></pre>
 
-            <p>Two things to note from this example.</p>
+                <p>Two things to note from this example.</p>
 
-            <p>First, you should make liberal use of before, beforeEach, after and afterEach to set up and tear down the appropriate context for tests. Ideally you only have a couple lines of code within each <strong>it()</strong> function.</p>
+                <p>First, you should make liberal use of before, beforeEach, after and afterEach to set up and tear down
+                    the appropriate context for tests. Ideally you only have a couple lines of code within each <strong>it()</strong>
+                    function.</p>
 
-            <p>The second thing to note is that the first parameter for the <strong>describe()</strong> and <strong>it()</strong> functions may be used by the test runner when tests are executed. For example, when this spec is run, some test runners may output:</p>
+                <p>The second thing to note is that the first parameter for the <strong>describe()</strong> and <strong>it()</strong>
+                    functions may be used by the test runner when tests are executed. For example, when this spec is
+                    run, some test runners may output:</p>
 
           <pre><code class="hljs perl">Unit: App
               App Abstract Route
               verifies <span class="hljs-keyword">state</span> configuration</code></pre>
 
-            <p>So, make sure the string values are descriptive.</p>
+                <p>So, make sure the string values are descriptive.</p>
 
-            <h4 class="section-heading" id="including-module">Including a Module</h4>
-            <p class="section-question">How do I inject a module in a spec?</p>
+                <h4 class="section-heading" id="including-module">Including a Module</h4>
 
-            <p>The first thing your spec should do is define all the Angular modules that are needed for the tests in that spec. This is done using the <strong>module()</strong> function that comes from the <strong>angular-mocks</strong> library. For example:
+                <p class="section-question">How do I inject a module in a spec?</p>
 
-            </p><pre><code lang="js" class="hljs coffeescript">beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp'</span>));</code></pre>
+                <p>The first thing your spec should do is define all the Angular modules that are needed for the tests
+                    in that spec. This is done using the <strong>module()</strong> function that comes from the <strong>angular-mocks</strong>
+                    library. For example:
 
-            <p>This code will enable the spec to test the code from the <strong>myApp</strong> module. It is best practice to use <strong>beforeEach()</strong> instead of just <strong>before()</strong> so that each test is essentially running from a blank slate. If you don't do this, the state from a previous test may bleed into another test and affect the results.</p>
+                </p>
+                <pre><code lang="js" class="hljs coffeescript">beforeEach(<span
+                        class="hljs-built_in">module</span>(<span class="hljs-string">'myApp'</span>));</code></pre>
 
-            <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
-            <p class="section-question">How do I instantiate a controller in a spec?</p>
+                <p>This code will enable the spec to test the code from the <strong>myApp</strong> module. It is best
+                    practice to use <strong>beforeEach()</strong> instead of just <strong>before()</strong> so that each
+                    test is essentially running from a blank slate. If you don't do this, the state from a previous test
+                    may bleed into another test and affect the results.</p>
 
-            <p>Here is our controller that we want to test:</p>
+                <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
+
+                <p class="section-question">How do I instantiate a controller in a spec?</p>
+
+                <p>Here is our controller that we want to test:</p>
 
           <pre><code lang="js" class="hljs javascript">
               <span class="hljs-comment">// src/app/about/about.js</span>
-              .controller(<span class="hljs-string">'AboutCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Messages)</span> </span>{
+              .controller(<span class="hljs-string">'AboutCtrl'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">(Messages)</span> </span>{
               <span class="hljs-keyword">var</span> about = <span class="hljs-keyword">this</span>;
               about.title = <span class="hljs-string">'About Page'</span>;
               about.body = <span class="hljs-string">'This is the about page body'</span>;
 
               about.message = Messages.getMessage();
 
-              about.updateMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(m)</span> </span>{
+              about.updateMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(m)</span> </span>{
               Messages.setMessage(m);
               };
               })
           </code></pre>
 
-            <p>The <strong>angular­-mocks</strong> library provides a service called <strong>$controller</strong> that we can use to help us test our controllers. In the <strong>beforeEach()</strong> below, we are injecting <strong>$controller</strong> along with any other dependencies we need to instantiate our controller.</p>
+                <p>The <strong>angular­-mocks</strong> library provides a service called <strong>$controller</strong>
+                    that we can use to help us test our controllers. In the <strong>beforeEach()</strong> below, we are
+                    injecting <strong>$controller</strong> along with any other dependencies we need to instantiate our
+                    controller.</p>
 
           <pre><code lang="js" class="hljs javascript">
               <span class="hljs-comment">// src/app/about/about.spec.js</span>
-              describe(<span class="hljs-string">'Unit: About'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'Unit: About'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
               <span class="hljs-comment">// Define global references for injections.</span>
               <span class="hljs-keyword">var</span> ctrl, messages;
 
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp.about'</span>));
-              beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'myApp.models.messages'</span>));
+              beforeEach(<span class="hljs-built_in">module</span>(<span
+                  class="hljs-string">'myApp.models.messages'</span>));
               beforeEach(<span class="hljs-built_in">module</span>(<span class="hljs-string">'ui.router'</span>));
 
-              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">($controller, _Messages_)</span> </span>{
+              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">($controller, _Messages_)</span> </span>{
               messages = _Messages_;
 
               spyOn(messages, <span class="hljs-string">'setMessage'</span>);
@@ -344,23 +462,28 @@
               });
               }));
 
-              describe(<span class="hljs-string">'AboutCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'AboutCtrl'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// Test some basic expectations about the controller</span>
-              it(<span class="hljs-string">'should have title defined'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should have title defined'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               expect(ctrl.title).toBeDefined();
               });
 
-              it(<span class="hljs-string">'should have body defined'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should have body defined'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               expect(ctrl.body).toBeDefined();
               });
 
-              it(<span class="hljs-string">'should call Messages.getMessage'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should call Messages.getMessage'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               expect(messages.getMessage).toHaveBeenCalled();
 
               expect(ctrl.message).toEqual(<span class="hljs-string">'Hello!'</span>);
               });
 
-              it(<span class="hljs-string">'should call updateMessage on message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should call updateMessage on message'</span>, <span
+                  class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-keyword">var</span> message = <span class="hljs-string">'Hello Message'</span>;
 
               ctrl.updateMessage(message);
@@ -371,16 +494,23 @@
               });
           </code></pre>
 
-            <p>Note that we are using the underscore syntax with <strong>_Messages_</strong> to get a global reference to the <strong>Messages</strong> service. The underscores are ignored by the injector when the reference name is resolved.</p>
+                <p>Note that we are using the underscore syntax with <strong>_Messages_</strong> to get a global
+                    reference to the <strong>Messages</strong> service. The underscores are ignored by the injector when
+                    the reference name is resolved.</p>
 
-            <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a></p>
+                <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a>
+                </p>
 
-            <h4 class="section-heading" id="including-service">Including a Service</h4>
-            <p class="section-question">How do I inject a service in a spec?</p>
+                <h4 class="section-heading" id="including-service">Including a Service</h4>
 
-            <p>Testing an Angular service is a piece of cake. You can use the <strong>inject()</strong> function from angular-mocks to get a reference to either internal Angular core objects or any of your custom objects in the modules that are defined at the top of the spec. For example:</p>
+                <p class="section-question">How do I inject a service in a spec?</p>
 
-          <pre><code lang="js" class="hljs bash">beforeEach(inject(<span class="hljs-keyword">function</span>(someService, someFactory) {
+                <p>Testing an Angular service is a piece of cake. You can use the <strong>inject()</strong> function
+                    from angular-mocks to get a reference to either internal Angular core objects or any of your custom
+                    objects in the modules that are defined at the top of the spec. For example:</p>
+
+          <pre><code lang="js" class="hljs bash">beforeEach(inject(<span class="hljs-keyword">function</span>(someService,
+              someFactory) {
 
               <span class="hljs-built_in">local</span>SomeService = someService;
 
@@ -388,42 +518,62 @@
 
               }));</code></pre>
 
-            <p>As a best practice, we suggest injecting objects in <strong>beforeEach()</strong> and saving the object to a local variable. Then in the test we just reference that local variable.</p>
+                <p>As a best practice, we suggest injecting objects in <strong>beforeEach()</strong> and saving the
+                    object to a local variable. Then in the test we just reference that local variable.</p>
 
-            <h4 class="section-heading" id="testing-template">Testing a Template</h4>
-            <p class="section-question">How do I test if an element is in the DOM?</p>
+                <h4 class="section-heading" id="testing-template">Testing a Template</h4>
 
-            <p>The most tricky thing to test with Angular is code within templates. That is why you should try to reduce the amount of code in your templates as much as possible. Even if you are really good about this, though, you will always have some template code that you want to test.</p>
+                <p class="section-question">How do I test if an element is in the DOM?</p>
 
-            <p>You can split template testing into two categories. The first category includes templates that don't have any controllers, includes or custom directives. Essentially you are just testing logic that uses basic Angular expressions and core Angular directives. This use case is relatively easy to test. Take the following example:</p>
+                <p>The most tricky thing to test with Angular is code within templates. That is why you should try to
+                    reduce the amount of code in your templates as much as possible. Even if you are really good about
+                    this, though, you will always have some template code that you want to test.</p>
+
+                <p>You can split template testing into two categories. The first category includes templates that don't
+                    have any controllers, includes or custom directives. Essentially you are just testing logic that
+                    uses basic Angular expressions and core Angular directives. This use case is relatively easy to
+                    test. Take the following example:</p>
 
 
     <pre><code lang="html" class="hljs xml"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span><span class="hljs-tag">&lt;/<span
+                class="hljs-title">title</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
 
         <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>{{home.title}}<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>{{home.title}}<span class="hljs-tag">&lt;/<span
+                class="hljs-title">h1</span>&gt;</span>
 
-        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{home.body}}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>{{home.body}}<span class="hljs-tag">&lt;/<span
+                class="hljs-title">p</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">hr</span>&gt;</span>
 
         <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">h2</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"text-error"</span>&gt;</span>Home: {{home.message}}<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">h2</span> <span class="hljs-attribute">class</span>=<span
+                class="hljs-value">"text-error"</span>&gt;</span>Home: {{home.message}}<span class="hljs-tag">&lt;/<span
+                class="hljs-title">h2</span>&gt;</span>
 
-        <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-inline"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"Message"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-default"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>Update Message<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span
+                class="hljs-value">"form-inline"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">class</span>=<span
+                class="hljs-value">"form-control"</span> <span class="hljs-attribute">placeholder</span>=<span
+                class="hljs-value">"Message"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span
+                class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-default"</span> <span
+                class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>Update
+        Message<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span></code></pre>
 
 
-
-            <p>We want to have access to this HTML file in our tests, but it is generally a bad idea to make an http call within your tests if you can avoid it. Fortunately, there is a nice feature in Karma that allows us to automatically package all of our HTML template files into an Angular module that we can access easily in our tests. Just add the following to your <strong>karma.conf.js</strong> file:</p>
+                <p>We want to have access to this HTML file in our tests, but it is generally a bad idea to make an http
+                    call within your tests if you can avoid it. Fortunately, there is a nice feature in Karma that
+                    allows us to automatically package all of our HTML template files into an Angular module that we can
+                    access easily in our tests. Just add the following to your <strong>karma.conf.js</strong> file:</p>
 
           <pre><code lang="js" class="hljs sql">
               // karma.conf.js
@@ -431,27 +581,38 @@
               stripPrefix: 'src/',
               // stripSufix: '.ext',
 
-              // setting this option will <span class="hljs-operator"><span class="hljs-keyword">create</span> <span class="hljs-keyword">only</span> a single <span class="hljs-keyword">module</span> that contains templates
-  // <span class="hljs-keyword">from</span> <span class="hljs-keyword">all</span> the files, so you can <span class="hljs-keyword">load</span> them <span class="hljs-keyword">all</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">module</span>(<span class="hljs-string">'foo'</span>)
+              // setting this option will <span class="hljs-operator"><span class="hljs-keyword">create</span> <span
+                  class="hljs-keyword">only</span> a single <span class="hljs-keyword">module</span> that contains templates
+  // <span class="hljs-keyword">from</span> <span class="hljs-keyword">all</span> the files, so you can <span
+                      class="hljs-keyword">load</span> them <span class="hljs-keyword">all</span> <span
+                      class="hljs-keyword">with</span> <span class="hljs-keyword">module</span>(<span
+                      class="hljs-string">'foo'</span>)
   moduleName: <span class="hljs-string">'myAppTemplates'</span>
 }
           </span></code></pre>
 
-            <p>This will automatically package any file ending in .html within your src/ folder into an Angular module called myAppTemplates. Each template is accessible by using the <strong>$templateCache</strong>  service. You can can test this template simply by injecting the <strong>$compile</strong> service with some test  data and then checking the resulting HTML:</p>
+                <p>This will automatically package any file ending in .html within your src/ folder into an Angular
+                    module called myAppTemplates. Each template is accessible by using the
+                    <strong>$templateCache</strong> service. You can can test this template simply by injecting the
+                    <strong>$compile</strong> service with some test data and then checking the resulting HTML:</p>
 
           <pre><code lang="js" class="hljs php">
-              describe(<span class="hljs-string">'UNIT test myTemplates'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'UNIT test myTemplates'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
               beforeEach(module(<span class="hljs-string">'myAppTemplates'</span>));
-              describe(<span class="hljs-string">'home template'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'home template'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
               <span class="hljs-keyword">var</span> homeTemplate,
               compile;
 
-              beforeEach(inject(<span class="hljs-variable">$templateCache</span>, <span class="hljs-variable">$compile</span>) {
+              beforeEach(inject(<span class="hljs-variable">$templateCache</span>, <span
+                  class="hljs-variable">$compile</span>) {
               homeTemplate = <span class="hljs-variable">$templateCache</span>.get(<span class="hljs-string">'app / home / home.tmpl.html'</span>);
               compile = <span class="hljs-variable">$compile</span>;
               });
 
-              it(<span class="hljs-string">'should have an h1 with my title'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should have an h1 with my title'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
               <span class="hljs-keyword">var</span> testScope = {
               home: {
               title: <span class="hljs-string">'blah'</span>
@@ -459,18 +620,23 @@
               });
 
               <span class="hljs-keyword">var</span> elem = compile(homeTemplate)(testScope);
-              expect(element.find(<span class="hljs-string">'h1'</span>).text()).toBe(<span class="hljs-string">'blah'</span>);
+              expect(element.find(<span class="hljs-string">'h1'</span>).text()).toBe(<span
+                  class="hljs-string">'blah'</span>);
               });
               });
               });
               });
           </code></pre>
 
-            <p>The second category of template testing is unfortunately more complex. We need to deal with dependencies within the template or surrounding the template such as a controller, the UI router, directives, etc. Let's look at one example of a more complex use case that includes a UI Router state and a controller:</p>
+                <p>The second category of template testing is unfortunately more complex. We need to deal with
+                    dependencies within the template or surrounding the template such as a controller, the UI router,
+                    directives, etc. Let's look at one example of a more complex use case that includes a UI Router
+                    state and a controller:</p>
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/home/home.js</span>
-              .config(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$stateProvider</span>)</span> </span>{
+              .config(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span
+                  class="hljs-variable">$stateProvider</span>)</span> </span>{
               <span class="hljs-variable">$stateProvider</span>
               .state(<span class="hljs-string">'about'</span>, {
               url: <span class="hljs-string">'/about'</span>,
@@ -479,36 +645,49 @@
               })
               ;
               })
-              .controller(<span class="hljs-string">'AboutCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Messages)</span> </span>{
+              .controller(<span class="hljs-string">'AboutCtrl'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">(Messages)</span> </span>{
               <span class="hljs-keyword">var</span> about = this;
               about.title = <span class="hljs-string">'About Page'</span>;
               about.body = <span class="hljs-string">'This is the about page body'</span>;
 
               about.message = Messages.getMessage();
 
-              about.updateMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(m)</span> </span>{
+              about.updateMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(m)</span> </span>{
               Messages.setMessage(m);
               };
               })
           </code></pre>
 
-            <p>In order to test the template and associated controller code, we need to instantiate the controller and surrounding context. To that end, we have created a helper function called <strong>compileRouteTemplateWithController</strong> that does everything we need.</p>
+                <p>In order to test the template and associated controller code, we need to instantiate the controller
+                    and surrounding context. To that end, we have created a helper function called <strong>compileRouteTemplateWithController</strong>
+                    that does everything we need.</p>
 
           <pre><code lang="js" class="hljs php">
-              <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compileRouteTemplateWithController</span><span class="hljs-params">(<span class="hljs-variable">$injector</span>, state)</span> </span>{
-              <span class="hljs-keyword">var</span> <span class="hljs-variable">$rootScope</span> = <span class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$rootScope'</span>);
-              <span class="hljs-keyword">var</span> <span class="hljs-variable">$templateCache</span> = <span class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$templateCache'</span>);
-              <span class="hljs-keyword">var</span> <span class="hljs-variable">$compile</span> = <span class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$compile'</span>);
-              <span class="hljs-keyword">var</span> <span class="hljs-variable">$state</span> = <span class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$state'</span>);
-              <span class="hljs-keyword">var</span> <span class="hljs-variable">$controller</span> = <span class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$controller'</span>);
+              <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">compileRouteTemplateWithController</span><span
+                      class="hljs-params">(<span class="hljs-variable">$injector</span>, state)</span> </span>{
+              <span class="hljs-keyword">var</span> <span class="hljs-variable">$rootScope</span> = <span
+                  class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$rootScope'</span>);
+              <span class="hljs-keyword">var</span> <span class="hljs-variable">$templateCache</span> = <span
+                  class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$templateCache'</span>);
+              <span class="hljs-keyword">var</span> <span class="hljs-variable">$compile</span> = <span
+                  class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$compile'</span>);
+              <span class="hljs-keyword">var</span> <span class="hljs-variable">$state</span> = <span
+                  class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$state'</span>);
+              <span class="hljs-keyword">var</span> <span class="hljs-variable">$controller</span> = <span
+                  class="hljs-variable">$injector</span>.get(<span class="hljs-string">'$controller'</span>);
 
-              <span class="hljs-keyword">var</span> scope = <span class="hljs-variable">$rootScope</span>.<span class="hljs-variable">$new</span>();
+              <span class="hljs-keyword">var</span> scope = <span class="hljs-variable">$rootScope</span>.<span
+                  class="hljs-variable">$new</span>();
               <span class="hljs-keyword">var</span> stateDetails = <span class="hljs-variable">$state</span>.get(state);
               <span class="hljs-keyword">var</span> html = <span class="hljs-variable">$templateCache</span>.get(stateDetails.templateUrl);
 
-              <span class="hljs-keyword">var</span> ctrl = scope.home = <span class="hljs-variable">$controller</span>(<span class="hljs-string">'HomeCtrl'</span>);
+              <span class="hljs-keyword">var</span> ctrl = scope.home = <span
+                  class="hljs-variable">$controller</span>(<span class="hljs-string">'HomeCtrl'</span>);
               <span class="hljs-variable">$rootScope</span>.<span class="hljs-variable">$digest</span>();
-              <span class="hljs-keyword">var</span> compileFn = <span class="hljs-variable">$compile</span>(angular.element(<span class="hljs-string">'&lt;div&gt;&lt;/div&gt;'</span>).html(html));
+              <span class="hljs-keyword">var</span> compileFn = <span class="hljs-variable">$compile</span>(angular.element(<span
+                  class="hljs-string">'&lt;div&gt;&lt;/div&gt;'</span>).html(html));
 
               <span class="hljs-keyword">return</span> {
               controller: ctrl,
@@ -522,20 +701,26 @@
               }
           </code></pre>
 
-            <p>We are using this helper function to get all the dependencies we need to run our tests. This includes creating scope, a controller and a render function. Feel free to use this and adapt it to your needs. Also, as an aside, whenever you see a lot of repetitive code within your tests, make sure you create your own helper functions.</p>
+                <p>We are using this helper function to get all the dependencies we need to run our tests. This includes
+                    creating scope, a controller and a render function. Feel free to use this and adapt it to your
+                    needs. Also, as an aside, whenever you see a lot of repetitive code within your tests, make sure you
+                    create your own helper functions.</p>
 
-            <p>OK, now we have everything in place to test our template.</p>
+                <p>OK, now we have everything in place to test our template.</p>
 
           <pre><code lang="js" class="hljs php">
-              describe(<span class="hljs-string">'home page'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'home page'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// Define global references for injections.</span>
               <span class="hljs-keyword">var</span> element, render, ctrl, scope;
 
-              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$injector</span>)</span> </span>{
+              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(<span class="hljs-variable">$injector</span>)</span> </span>{
               <span class="hljs-comment">// Call the helper function that "creates" a page.</span>
               <span class="hljs-comment">// This just creates references to the attributes</span>
               <span class="hljs-comment">// on the returned object for use in this suite.</span>
-              <span class="hljs-keyword">var</span> routeDetails = compileRouteTemplateWithController(<span class="hljs-variable">$injector</span>, <span class="hljs-string">'home'</span>);
+              <span class="hljs-keyword">var</span> routeDetails = compileRouteTemplateWithController(<span
+                  class="hljs-variable">$injector</span>, <span class="hljs-string">'home'</span>);
               ctrl = routeDetails.controller;
               scope = routeDetails.scope;
 
@@ -545,19 +730,24 @@
               }));
 
               <span class="hljs-comment">// Test your expectations. You can use ordinary jQuery methods</span>
-              it(<span class="hljs-string">'should render the page title'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should render the page title'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               scope.home.title = <span class="hljs-string">'Hello'</span>;
               render();
-              expect(element.find(<span class="hljs-string">'h1'</span>).text()).toBe(<span class="hljs-string">'Hello'</span>);
+              expect(element.find(<span class="hljs-string">'h1'</span>).text()).toBe(<span
+                  class="hljs-string">'Hello'</span>);
               });
 
-              it(<span class="hljs-string">'should have body defined'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should have body defined'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               scope.home.body = <span class="hljs-string">'body...'</span>;
               render();
-              expect(element.find(<span class="hljs-string">'p'</span>).text()).toBe(<span class="hljs-string">'body...'</span>);
+              expect(element.find(<span class="hljs-string">'p'</span>).text()).toBe(<span
+                  class="hljs-string">'body...'</span>);
               });
 
-              it(<span class="hljs-string">'should call Messages.getMessage'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should call Messages.getMessage'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               render();
               expect(Messages.getMessage).toHaveBeenCalled();
 
@@ -565,20 +755,24 @@
               expect(Messages.setMessage).toHaveBeenCalled();
               });
 
-              it(<span class="hljs-string">'should call Messages.setMessage when submit is clicked'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should call Messages.setMessage when submit is clicked'</span>, <span
+                  class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               render();
               element.find(<span class="hljs-string">'input'</span>).val(<span class="hljs-string">'Lukas'</span>);
-              element.find(<span class="hljs-string">'input'</span>).triggerHandler(<span class="hljs-string">'input'</span>);
+              element.find(<span class="hljs-string">'input'</span>).triggerHandler(<span
+                  class="hljs-string">'input'</span>);
               scope.<span class="hljs-variable">$digest</span>();
 
-              element.find(<span class="hljs-string">'button'</span>).triggerHandler(<span class="hljs-string">'click'</span>);
+              element.find(<span class="hljs-string">'button'</span>).triggerHandler(<span
+                  class="hljs-string">'click'</span>);
               scope.<span class="hljs-variable">$digest</span>();
 
               expect(Messages.getMessage).toHaveBeenCalled();
               expect(scope.home.message).toEqual(<span class="hljs-string">'Lukas'</span>);
               });
 
-              it(<span class="hljs-string">'should call updateMessage on message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should call updateMessage on message'</span>, <span
+                  class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-keyword">var</span> message = <span class="hljs-string">'Hello Message'</span>;
 
               ctrl.updateMessage(message);
@@ -588,10 +782,12 @@
               });
           </code></pre>
 
-            <p>The key part of this test was the use of the helper function to instantiate the template and all required dependencies:</p>
+                <p>The key part of this test was the use of the helper function to instantiate the template and all
+                    required dependencies:</p>
 
           <pre><code lang="js" class="hljs php">
-              <span class="hljs-keyword">var</span> routeDetails = compileRouteTemplateWithController(<span class="hljs-variable">$injector</span>, <span class="hljs-string">'home'</span>);
+              <span class="hljs-keyword">var</span> routeDetails = compileRouteTemplateWithController(<span
+                  class="hljs-variable">$injector</span>, <span class="hljs-string">'home'</span>);
               ctrl = routeDetails.controller;
               scope = routeDetails.scope;
 
@@ -601,14 +797,17 @@
           </code></pre>
 
 
-            <h4 class="section-heading" id="testing-route">Testing a Route</h4>
-            <p class="section-question">How do I test route changes?</p>
+                <h4 class="section-heading" id="testing-route">Testing a Route</h4>
 
-            <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly during the config phase. For example, given the following state configuration:</p>
+                <p class="section-question">How do I test route changes?</p>
+
+                <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly
+                    during the config phase. For example, given the following state configuration:</p>
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/about/about.js</span>
-              .config(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$stateProvider</span>)</span> </span>{
+              .config(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span
+                  class="hljs-variable">$stateProvider</span>)</span> </span>{
               <span class="hljs-variable">$stateProvider</span>
               .state(<span class="hljs-string">'about'</span>, {
               url: <span class="hljs-string">'/about'</span>,
@@ -619,11 +818,14 @@
               })
           </code></pre>
 
-            <p>Our basic strategy for testing is to use the <strong>$state.go()</strong> and <strong>$state.href()</strong> methods to modify the current state and then check to make sure the route is changed appropriately.</p>
+                <p>Our basic strategy for testing is to use the <strong>$state.go()</strong> and
+                    <strong>$state.href()</strong> methods to modify the current state and then check to make sure the
+                    route is changed appropriately.</p>
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/about/about.spec.js</span>
-              describe(<span class="hljs-string">'About Route'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'About Route'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// Define global references for injections</span>
               <span class="hljs-keyword">var</span> <span class="hljs-variable">$state</span>,
               <span class="hljs-variable">$rootScope</span>,
@@ -631,20 +833,26 @@
 
               <span class="hljs-comment">// Inject and assign the $state and $rootScope services.</span>
               <span class="hljs-comment">// Put the template in template cache.</span>
-              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(_<span class="hljs-variable">$state_</span>, <span class="hljs-variable">$templateCache</span>, _<span class="hljs-variable">$rootScope_</span>)</span> </span>{
+              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(_<span class="hljs-variable">$state_</span>, <span class="hljs-variable">$templateCache</span>, _<span
+                  class="hljs-variable">$rootScope_</span>)</span> </span>{
               <span class="hljs-variable">$state</span> = _<span class="hljs-variable">$state_</span>;
               <span class="hljs-variable">$rootScope</span> = _<span class="hljs-variable">$rootScope_</span>;
 
-              <span class="hljs-variable">$templateCache</span>.put(<span class="hljs-string">'app/about/about.tmpl.html'</span>, <span class="hljs-string">''</span>);
+              <span class="hljs-variable">$templateCache</span>.put(<span class="hljs-string">'app/about/about.tmpl.html'</span>,
+              <span class="hljs-string">''</span>);
               }));
 
               <span class="hljs-comment">// Test whether the url is correct</span>
-              it(<span class="hljs-string">'should respond to URL'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-              expect(<span class="hljs-variable">$state</span>.href(state)).toEqual(<span class="hljs-string">'/about'</span>);
+              it(<span class="hljs-string">'should respond to URL'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              expect(<span class="hljs-variable">$state</span>.href(state)).toEqual(<span
+                  class="hljs-string">'/about'</span>);
               });
 
               <span class="hljs-comment">// Test whether our state activates correctly</span>
-              it(<span class="hljs-string">'should activate the state'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should activate the state'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
               <span class="hljs-variable">$state</span>.go(state);
               <span class="hljs-variable">$rootScope</span>.<span class="hljs-variable">$digest</span>();
               expect(<span class="hljs-variable">$state</span>.current.name).toBe(state);
@@ -652,23 +860,34 @@
               });
           </code></pre>
 
-            <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
-            <p class="section-question">How do I set up a spec for a directive?</p>
+                <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
 
-            <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key is to pass in a HTML snippet to <strong>$compile()</strong> that refers to the target directive. For example, if you had an element directive called 'experiment', you would simply call <strong>$compile("&lt;experiment&gt;&lt;/experiment&gt;")</strong>. You can see the full example here:</p>
+                <p class="section-question">How do I set up a spec for a directive?</p>
+
+                <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key
+                    is to pass in a HTML snippet to <strong>$compile()</strong> that refers to the target directive. For
+                    example, if you had an element directive called 'experiment', you would simply call <strong>$compile("&lt;experiment&gt;&lt;/experiment&gt;")</strong>.
+                    You can see the full example here:</p>
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/experiments/experiments.js</span>
-              .directive(<span class="hljs-string">'experiment'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-              <span class="hljs-keyword">var</span> linker = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(scope, element, attrs)</span> </span>{
-              element.on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+              .directive(<span class="hljs-string">'experiment'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+              <span class="hljs-keyword">var</span> linker = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(scope, element, attrs)</span> </span>{
+              element.on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
               scope.doExperiment();
               })
               };
 
-              <span class="hljs-keyword">var</span> controller =  <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$scope</span>)</span></span>{
-              <span class="hljs-variable">$scope</span>.doExperiment = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-              <span class="hljs-variable">$scope</span>.<span class="hljs-variable">$apply</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+              <span class="hljs-keyword">var</span> controller = <span class="hljs-function"><span class="hljs-keyword">function</span><span
+                  class="hljs-params">(<span class="hljs-variable">$scope</span>)</span></span>{
+              <span class="hljs-variable">$scope</span>.doExperiment = <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              <span class="hljs-variable">$scope</span>.<span class="hljs-variable">$apply</span>(<span
+                  class="hljs-function"><span class="hljs-keyword">function</span><span
+                  class="hljs-params">()</span></span>{
               <span class="hljs-variable">$scope</span>.experiment.completed++;
               });
               };
@@ -680,7 +899,8 @@
               template: <span class="hljs-string">'&lt;div class="experiment"&gt;'</span> +
               <span class="hljs-string">'&lt;h3&gt;{{experiment.name}}&lt;/h3&gt;'</span> +
               <span class="hljs-string">'&lt;p&gt;{{experiment.description}}&lt;/p&gt;'</span> +
-              <span class="hljs-string">'&lt;p&gt;&lt;strong&gt;{{experiment.completed}}&lt;/strong&gt;&lt;/p&gt;'</span> +
+              <span class="hljs-string">'&lt;p&gt;&lt;strong&gt;{{experiment.completed}}&lt;/strong&gt;&lt;/p&gt;'</span>
+              +
               <span class="hljs-string">'&lt;/div&gt;'</span>,
               link: linker,
               controller: controller
@@ -688,15 +908,17 @@
               })
           </code></pre>
 
-            And the spec.
+                And the spec.
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/experiments/experiments.spec.js</span>
-              describe(<span class="hljs-string">'Experiments Directive'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'Experiments Directive'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// Define global references for injections</span>
               <span class="hljs-keyword">var</span> element, experiment;
 
-              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$rootScope</span>, <span class="hljs-variable">$compile</span>)</span> </span>{
+              beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(<span class="hljs-variable">$rootScope</span>, <span class="hljs-variable">$compile</span>)</span> </span>{
               <span class="hljs-comment">// Mock out an experiment</span>
               <span class="hljs-variable">$rootScope</span>.experiment = {
               <span class="hljs-string">"name"</span>: <span class="hljs-string">"Experiment 1"</span>,
@@ -710,7 +932,8 @@
               <span class="hljs-variable">$compile</span>(element)(<span class="hljs-variable">$rootScope</span>);
               }));
 
-              it(<span class="hljs-string">'should increment experiment completed count'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">'should increment experiment completed count'</span>, <span
+                  class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// Get the directive's scope</span>
               <span class="hljs-keyword">var</span> localScope = element.scope();
 
@@ -724,53 +947,79 @@
               })
           </code></pre>
 
-            <p>Note: depending on what your directive does, you may need to modify the HTML passed into <strong>$compile</strong>. For example, if the directive expects other attributes on the element or if you are testing a directive with transclusion (in which case you will want to put different snippets of HTML as children to the element that has the directive).</p>
+                <p>Note: depending on what your directive does, you may need to modify the HTML passed into <strong>$compile</strong>.
+                    For example, if the directive expects other attributes on the element or if you are testing a
+                    directive with transclusion (in which case you will want to put different snippets of HTML as
+                    children to the element that has the directive).</p>
 
-            <h4 class="section-heading" id="mocking">Mocking</h4>
-            <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
+                <h4 class="section-heading" id="mocking">Mocking</h4>
 
-            <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma. When you are writing a unit test, your goal is to test just one thing and either eliminate or mock out all other dependencies. In general, you can mock any object through the use of the <strong>$provide</strong> service. You use this service when you define the module you are using in your spec. For example:
+                <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
 
-            </p><pre><code lang="js" class="hljs php">
-            beforeEach(module(<span class="hljs-string">"app"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$provide</span>)</span> </span>{
-            <span class="hljs-variable">$provide</span>.value(<span class="hljs-string">"SimpleService"</span>, {
-            someFn: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{}
-            });
-            }));
-        </code></pre>
+                <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma.
+                    When you are writing a unit test, your goal is to test just one thing and either eliminate or mock
+                    out all other dependencies. In general, you can mock any object through the use of the <strong>$provide</strong>
+                    service. You use this service when you define the module you are using in your spec. For example:
 
-            <p>In this case, we are overriding the SimpleService object. Once we do this, any code that injects SimpleService will get our mock object instead of the actual SimpleService.</p>
+                </p><pre><code lang="js" class="hljs php">
+                beforeEach(module(<span class="hljs-string">"app"</span>, <span class="hljs-function"><span
+                    class="hljs-keyword">function</span><span class="hljs-params">(<span
+                    class="hljs-variable">$provide</span>)</span> </span>{
+                <span class="hljs-variable">$provide</span>.value(<span class="hljs-string">"SimpleService"</span>, {
+                someFn: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{}
+                });
+                }));
+            </code></pre>
 
-            <p>There is one special case with mocking where Angular helps you out. Whenever you use <strong>$http</strong> to make a remote call, Angular has another service behind the scenes called <strong>$httpBackend</strong> that actually does all the hard work. The angular­mocks library has its own version of <strong>$httpBackend</strong> with a number of goodies to help us mock out calls to the back end. For example look at this code which makes an <strong>$http</strong> call:</p>
+                <p>In this case, we are overriding the SimpleService object. Once we do this, any code that injects
+                    SimpleService will get our mock object instead of the actual SimpleService.</p>
+
+                <p>There is one special case with mocking where Angular helps you out. Whenever you use
+                    <strong>$http</strong> to make a remote call, Angular has another service behind the scenes called
+                    <strong>$httpBackend</strong> that actually does all the hard work. The angular­mocks library has
+                    its own version of <strong>$httpBackend</strong> with a number of goodies to help us mock out calls
+                    to the back end. For example look at this code which makes an <strong>$http</strong> call:</p>
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/experiments/experiments.js</span>
-              .service(<span class="hljs-string">'Experiments'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$http</span>)</span> </span>{
+              .service(<span class="hljs-string">'Experiments'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">(<span
+                  class="hljs-variable">$http</span>)</span> </span>{
               <span class="hljs-keyword">var</span> service = this;
 
-              service.getExperiments = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-              <span class="hljs-keyword">return</span> <span class="hljs-variable">$http</span>.get(<span class="hljs-string">'data/experiments.json'</span>);
+              service.getExperiments = <span class="hljs-function"><span class="hljs-keyword">function</span><span
+                  class="hljs-params">()</span> </span>{
+              <span class="hljs-keyword">return</span> <span class="hljs-variable">$http</span>.get(<span
+                  class="hljs-string">'data/experiments.json'</span>);
               };
               })
           </code></pre>
 
-            <p>If we call <strong>getExperiments()</strong> in our test, it will make an actual http request to data/experiments.json. We can intercept that call with <strong>$httpBackend</strong>, however, and define what should be returned instead of making a remote call.</p>
+                <p>If we call <strong>getExperiments()</strong> in our test, it will make an actual http request to
+                    data/experiments.json. We can intercept that call with <strong>$httpBackend</strong>, however, and
+                    define what should be returned instead of making a remote call.</p>
 
           <pre><code lang="js" class="hljs php">
               <span class="hljs-comment">// app/experiments/experiments.spec.js</span>
-              describe(<span class="hljs-string">'Experiments Model'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+              describe(<span class="hljs-string">'Experiments Model'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// After every spec, do the following:</span>
-              afterEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$httpBackend</span>)</span> </span>{
+              afterEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(<span class="hljs-variable">$httpBackend</span>)</span> </span>{
               <span class="hljs-comment">// Make sure we have flushed all of our requests.</span>
               <span class="hljs-variable">$httpBackend</span>.verifyNoOutstandingExpectation();
               <span class="hljs-variable">$httpBackend</span>.verifyNoOutstandingRequest();
               }));
 
-              it(<span class="hljs-string">'Should get experiments'</span>, inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Experiments, <span class="hljs-variable">$httpBackend</span>, <span class="hljs-variable">$rootScope</span>)</span> </span>{
+              it(<span class="hljs-string">'Should get experiments'</span>, inject(<span class="hljs-function"><span
+                  class="hljs-keyword">function</span> <span class="hljs-params">(Experiments, <span
+                  class="hljs-variable">$httpBackend</span>, <span
+                  class="hljs-variable">$rootScope</span>)</span> </span>{
               <span class="hljs-keyword">var</span> mockResponse = [];
               <span class="hljs-comment">// Every time we hit the specified url,</span>
               <span class="hljs-comment">// respond with mockResponse( in this case an empty array).</span>
-              <span class="hljs-variable">$httpBackend</span>.when(<span class="hljs-string">'GET'</span>, <span class="hljs-string">'data/experiments.json'</span>).respond(mockResponse);
+              <span class="hljs-variable">$httpBackend</span>.when(<span class="hljs-string">'GET'</span>, <span
+                  class="hljs-string">'data/experiments.json'</span>).respond(mockResponse);
 
               <span class="hljs-comment">// The promise reference now holds the $http call returned</span>
               <span class="hljs-keyword">var</span> promise = Experiments.getExperiments();
@@ -778,7 +1027,8 @@
               <span class="hljs-variable">$httpBackend</span>.flush();
 
               <span class="hljs-comment">// Use .then() like you would normally.</span>
-              promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(result)</span> </span>{
+              promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">(result)</span> </span>{
               expect(result.data).toEqual(mockResponse);
               });
 
@@ -788,18 +1038,24 @@
               });
           </code></pre>
 
-            <p>Note that <strong>$httpBackend.flush()</strong> is needed because normally $http is asynchronous, but we want to execute our test in a synchronous fashion. The call to <strong>flush()</strong> will ensure that the <strong>.then()</strong> on the promise returned from $http will be executed immediately.</p>
+                <p>Note that <strong>$httpBackend.flush()</strong> is needed because normally $http is asynchronous, but
+                    we want to execute our test in a synchronous fashion. The call to <strong>flush()</strong> will
+                    ensure that the <strong>.then()</strong> on the promise returned from $http will be executed
+                    immediately.</p>
 
-            <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
-            <p class="section-question">How do I determine if one method successfully calls another method?<br>
-                How do I determine what arguments were included when I call a method?</p>
+                <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
 
-            <p>Jasmine uses a spy to determine whether a method has been called and/or what arguments are set into a method call. So, for example:</p>
+                <p class="section-question">How do I determine if one method successfully calls another method?<br>
+                    How do I determine what arguments were included when I call a method?</p>
+
+                <p>Jasmine uses a spy to determine whether a method has been called and/or what arguments are set into a
+                    method call. So, for example:</p>
 
           <pre><code lang="js" class="hljs javascript">
               <span class="hljs-keyword">var</span> foo, bar = <span class="hljs-literal">null</span>;
 
-              beforeEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              beforeEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span
+                  class="hljs-params">()</span> </span>{
               <span class="hljs-comment">// Here we create a simple object foo with a method setBar, which takes one argument.</span>
               foo = {
               setBar: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(value)</span> </span>{
@@ -814,25 +1070,31 @@
 
               foo.setBar(<span class="hljs-number">123</span>);
 
-              it(<span class="hljs-string">"tracks that the spy was called"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">"tracks that the spy was called"</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
               expect(foo.setBar).toHaveBeenCalled();
               });
 
-              it(<span class="hljs-string">"tracks the arguments of its calls"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              it(<span class="hljs-string">"tracks the arguments of its calls"</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
               expect(foo.setBar).toHaveBeenCalledWith(<span class="hljs-number">123</span>);
               });
           </code></pre>
 
 
-            <p>A spy only exists within the <strong>describe()</strong> or <strong>it()</strong> function where it has been defined.</p>
+                <p>A spy only exists within the <strong>describe()</strong> or <strong>it()</strong> function where it
+                    has been defined.</p>
 
-            <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
+                <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
 
-            <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should return (using returnValue()) or what fake function the spy should run instead of the target function (using callFake()). For example:</p>
+                <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should
+                    return (using returnValue()) or what fake function the spy should run instead of the target function
+                    (using callFake()). For example:</p>
 
         <pre><code lang="js" class="hljs javascript">
             <span class="hljs-comment">// app/experiments/experiments.js</span>
-            .controller(<span class="hljs-string">'ExperimentsCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Messages, Experiments)</span> </span>{
+            .controller(<span class="hljs-string">'ExperimentsCtrl'</span>, <span class="hljs-function"><span
+                class="hljs-keyword">function</span> <span class="hljs-params">(Messages, Experiments)</span> </span>{
             <span class="hljs-keyword">var</span> experiments = <span class="hljs-keyword">this</span>;
             experiments.title = <span class="hljs-string">'Experiments Page'</span>;
             experiments.body = <span class="hljs-string">'This is the about experiments body'</span>;
@@ -844,19 +1106,23 @@
             experiments.experiments = result.data;
             });
 
-            experiments.updateMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(m)</span> </span>{
+            experiments.updateMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                class="hljs-params">(m)</span> </span>{
             Messages.setMessage(m);
             };
             })
         </code></pre>
 
-            And the spec.
+                And the spec.
 
       <pre><code lang="js" class="hljs php">
           <span class="hljs-comment">// app/experiments/experiments.spec.js</span>
-          describe(<span class="hljs-string">'ExperimentsCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          describe(<span class="hljs-string">'ExperimentsCtrl'</span>, <span class="hljs-function"><span
+              class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           <span class="hljs-comment">// Inject and assign services and create the controller.</span>
-          beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$controller</span>, _Messages_, _Experiments_, <span class="hljs-variable">$q</span>)</span> </span>{
+          beforeEach(inject(<span class="hljs-function"><span class="hljs-keyword">function</span> <span
+              class="hljs-params">(<span class="hljs-variable">$controller</span>, _Messages_, _Experiments_, <span
+              class="hljs-variable">$q</span>)</span> </span>{
           messages = _Messages_;
           experiments = _Experiments_;
 
@@ -865,12 +1131,14 @@
           spyOn(messages, <span class="hljs-string">'setMessage'</span>);
           <span class="hljs-comment">// Every time Messages.getMessage is called,</span>
           <span class="hljs-comment">// we want the value 'Hello!' to be returned.</span>
-          spyOn(messages, <span class="hljs-string">'getMessage'</span>).<span class="hljs-keyword">and</span>.returnValue(<span class="hljs-string">'Hello!'</span>);
+          spyOn(messages, <span class="hljs-string">'getMessage'</span>).<span class="hljs-keyword">and</span>.returnValue(<span
+              class="hljs-string">'Hello!'</span>);
 
           <span class="hljs-comment">// Every time Messages.getExperiments is called,</span>
           <span class="hljs-comment">// we execute the function contained within the callFake method.</span>
           spyOn(experiments, <span class="hljs-string">'getExperiments'</span>).<span class="hljs-keyword">and</span>.callFake(
-          <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          <span class="hljs-function"><span class="hljs-keyword">function</span> <span
+                  class="hljs-params">()</span> </span>{
           <span class="hljs-comment">// Since we don't want to deal with an $http call</span>
           <span class="hljs-comment">// in the controller, we mock it out using $q.</span>
           <span class="hljs-keyword">var</span> deferred = <span class="hljs-variable">$q</span>.defer();
@@ -888,13 +1156,15 @@
           <span class="hljs-comment">// Now we can see if the methods we are spying on actually execute;</span>
           <span class="hljs-comment">// also, we can test some expectations on the portions of the controller</span>
           <span class="hljs-comment">// that interact with our spies.</span>
-          it(<span class="hljs-string">'should call Messages.getMessage'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          it(<span class="hljs-string">'should call Messages.getMessage'</span>, <span class="hljs-function"><span
+              class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           expect(messages.getMessage).toHaveBeenCalled();
 
           expect(ctrl.message).toEqual(<span class="hljs-string">'Hello!'</span>);
           });
 
-          it(<span class="hljs-string">'should call updateMessage on message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          it(<span class="hljs-string">'should call updateMessage on message'</span>, <span class="hljs-function"><span
+              class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
           <span class="hljs-keyword">var</span> message = <span class="hljs-string">'Hello Message'</span>;
 
           ctrl.updateMessage(message);
@@ -904,47 +1174,69 @@
           });
       </code></pre>
 
-            <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
-            <p class="section-question">How do I handle async operations in a spec?</p>
+                <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
 
-            <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will complete before the operation completes. There are ways of handling specific use cases (for example <strong>$httpBackend.flush()</strong> as mentioned earlier), but you can also use the Jasmine <strong>done()</strong> function. For example:</p>
+                <p class="section-question">How do I handle async operations in a spec?</p>
+
+                <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will
+                    complete before the operation completes. There are ways of handling specific use cases (for example
+                    <strong>$httpBackend.flush()</strong> as mentioned earlier), but you can also use the Jasmine
+                    <strong>done()</strong> function. For example:</p>
 
           <pre><code lang="js" class="hljs php">
-              it(<span class="hljs-string">'should do something'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(done)</span> </span>{
+              it(<span class="hljs-string">'should do something'</span>, <span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">(done)</span> </span>{
               someAsyncOperation
-              .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+              .then(<span class="hljs-function"><span class="hljs-keyword">function</span><span
+                  class="hljs-params">()</span> </span>{
               done();
               })
-              .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span> </span>{
+              .<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span
+                  class="hljs-keyword">function</span><span class="hljs-params">(err)</span> </span>{
               done(err);
               });
               });
           </code></pre>
 
-            <p>In this example, the test will not complete until <strong>done()</strong> is called. If <strong>done()</strong> contains a parameter, Jasmine treats that as an error and fails the test.</p>
+                <p>In this example, the test will not complete until <strong>done()</strong> is called. If <strong>done()</strong>
+                    contains a parameter, Jasmine treats that as an error and fails the test.</p>
 
-            <p>One last note on async operations. You may have noticed in our examples a call to <strong>$rootScope.$digest()</strong>. This will force the digest cycle to run which is needed whenever we are testing anything athat involves watchers (so, anything with templates).</p>
+                <p>One last note on async operations. You may have noticed in our examples a call to <strong>$rootScope.$digest()</strong>.
+                    This will force the digest cycle to run which is needed whenever we are testing anything athat
+                    involves watchers (so, anything with templates).</p>
 
-            <h4 class="section-heading" id="debugging">Debugging</h4>
-            <p class="section-question">How do I troubleshoot problems with my specs?</p>
+                <h4 class="section-heading" id="debugging">Debugging</h4>
 
-            <p>Spec code is run in the browser just like any other client side code. So, how do you debug your Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with Chrome there should be a Chrome window open on your machine that contains the output of the test. To debug, simply open up the Chrome dev tools and refresh the page.</p>
+                <p class="section-question">How do I troubleshoot problems with my specs?</p>
 
-            <h4 class="section-heading" id="best-practices">Best Practices</h4>
-            <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
+                <p>Spec code is run in the browser just like any other client side code. So, how do you debug your
+                    Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with
+                    Chrome there should be a Chrome window open on your machine that contains the output of the test. To
+                    debug, simply open up the Chrome dev tools and refresh the page.</p>
 
-            <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
-            <ul>
-                <li>Use <strong>beforeEach()</strong> to set up the context for your tests.</li>
-                <li>Make sure the string descriptions you put in <strong>describe()</strong> and <strong>it()</strong> make sense as output</li>
-                <li>Use <strong>after()</strong> and <strong>afterEach()</strong> to cleanup your tests if there is any state that may bleed over.</li>
-                <li>If any one test is over 10 lines of code, you may need to refactor the test</li>
-                <li>If you find yourself repeating the same code for many tests, refactor the common code into a helper function</li>
-            </ul>
+                <h4 class="section-heading" id="best-practices">Best Practices</h4>
 
-            <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
+                <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
 
-            <p>Pending</p>
+                <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
+                <ul>
+                    <li>Use <strong>beforeEach()</strong> to set up the context for your tests.</li>
+                    <li>Make sure the string descriptions you put in <strong>describe()</strong> and
+                        <strong>it()</strong> make sense as output
+                    </li>
+                    <li>Use <strong>after()</strong> and <strong>afterEach()</strong> to cleanup your tests if there is
+                        any state that may bleed over.
+                    </li>
+                    <li>If any one test is over 10 lines of code, you may need to refactor the test</li>
+                    <li>If you find yourself repeating the same code for many tests, refactor the common code into a
+                        helper function
+                    </li>
+                </ul>
+
+                <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
+
+                <p>Pending</p>
+            </div>
 
         </div>
     </div>
@@ -959,13 +1251,18 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script>
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(this).scrollTop()) {
             $('#toTop:hidden').stop(true, true).fadeIn();
         } else {
             $('#toTop').stop(true, true).fadeOut();
         }
     });
+
+/*    $('body').on('activate.bs.scrollspy', function () {
+        alert('here')
+    })*/
 </script>
 
-</body></html>
+</body>
+</html>
