@@ -1,3 +1,5 @@
+![quickstart](https://cloud.githubusercontent.com/assets/590361/7921189/978525e4-0858-11e5-9caa-db620ca898bb.jpg)
+
 AngularJS Testing Quick Start
 ===========
 
