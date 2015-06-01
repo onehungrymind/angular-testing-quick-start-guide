@@ -3,7 +3,7 @@
 AngularJS Testing Quick Start
 ===========
 
-Welcome to our AngularJS Testing Quickstart! We are in the final stages of prepping it for production, so if you see anything amiss please do not hesitate to submit a pull request. 
+Welcome to our AngularJS Testing Quickstart! We are in the final stages of prepping it for production, so if you see anything amiss please do not hesitate to submit a pull request. Click [here](http://simpulton.github.io/angularjs-testing-quick-start-guide/) to view the current iteration of the guide.
 
 If you would like to view the campanion code to the Quick Start, head on over to the [companion repo](https://github.com/simpulton/angularjs-testing-quick-start).
 
