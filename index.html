@@ -46,8 +46,17 @@
             padding: 5px 0;
         }
 
-        #table-of-contents li.active a {
-            background-color: #eee;
+        #table-of-contents li a {
+            -webkit-transition: all 0.2s linear;
+            -moz-transition: all 0.2s linear;
+            -ms-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+        #table-of-contents li a:hover, #table-of-contents li.active a {
+            background: #0085ff;
+            color: white;
         }
 
         #toTop {
@@ -75,7 +84,7 @@
             margin-left: 40rem;
         }
 
-        h4 {
+        h1, h4 {
             color: #0085ff;
         }
 
