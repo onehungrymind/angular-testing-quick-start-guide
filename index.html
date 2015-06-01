@@ -11,12 +11,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
     <!-- Optional theme -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
     <style>
         body {
+            font-family: 'Lato', sans-serif;
             background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Light-aluminum-Grey-Seamless-Pattern-For-Website-Background.jpg');
             position: relative;
+            color: #777;
+            font-size: 1.5rem;
+            letter-spacing: 0.05rem;
         }
 
         .section-heading {
@@ -132,6 +137,7 @@
         <div class="col-sm-12">
 
             <div class="main-content">
+                <h1>AngularJS Unit Testing Quick Start</h1>
                 <h4 class="section-heading" id="sample-project">Introduction</h4>
           <p class="section-question">Why are you doing this?</p>
           <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy, actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How do I instantiate my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
