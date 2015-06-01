@@ -35,6 +35,7 @@
 
         nav {
             width: 30rem;
+            overflow: auto;
         }
 
         #table-of-contents ul {
@@ -1260,7 +1261,12 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script>
+    var innerHeight = $(window).innerHeight();
+
     $(window).scroll(function () {
+        innerHeight = $(window).innerHeight();
+        $('#table-of-contents').css('max-height', innerHeight);
+
         if ($(this).scrollTop()) {
             $('#toTop:hidden').stop(true, true).fadeIn();
         } else {
@@ -1268,9 +1274,8 @@
         }
     });
 
-/*    $('body').on('activate.bs.scrollspy', function () {
-        alert('here')
-    })*/
+    $('#table-of-contents').css('max-height', innerHeight);
+
 </script>
 
 </body>
