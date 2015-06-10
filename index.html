@@ -1,151 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>AngularJS Unit Testing</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>AngularJS Unit Testing</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <!-- Optional theme -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
-    <style>
-        body {
-            font-family: 'Lato', sans-serif;
-            background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Light-aluminum-Grey-Seamless-Pattern-For-Website-Background.jpg');
-            position: relative;
-            color: #777;
-            font-size: 1.5rem;
-            letter-spacing: 0.05rem;
-        }
+  <!-- Optional theme -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
+  <link rel="stylesheet" href="core.css">
+  <link rel="stylesheet" href="ui-changes.css">
 
-        .section-heading {
-            margin-bottom: 0;
-            margin-top: 50px;
-        }
-
-        .section-heading.bottom-margin {
-            margin-bottom: 30px;
-        }
-
-        .section-question {
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        nav {
-            width: 30rem;
-            overflow: auto;
-        }
-
-        #table-of-contents ul {
-            margin-top: 30px;
-            list-style-type: none;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            background-color: whitesmoke;
-            margin-bottom: 30px;
-        }
-
-        #table-of-contents li {
-            padding: 5px 0;
-        }
-
-        #table-of-contents li a {
-            -webkit-transition: all 0.2s linear;
-            -moz-transition: all 0.2s linear;
-            -ms-transition: all 0.2s linear;
-            -o-transition: all 0.2s linear;
-            transition: all 0.2s linear;
-        }
-
-        #table-of-contents li a:hover, #table-of-contents li.active a {
-            background: #0085ff;
-            color: white;
-        }
-
-        #toTop {
-            padding: 10px;
-            border-top-right-radius: 4px;
-            border-top-left-radius: 4px;
-            background: #3f3f3f;
-            color: #fff;
-            position: fixed;
-            bottom: 0;
-            right: 20px;
-            display: none;
-        }
-
-        #toTop a, #toTop a:hover {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        pre {
-            margin: 30px 0;
-        }
-
-        .container-fluid {
-            margin-left: 40rem;
-        }
-
-        h1, h4 {
-            color: #0085ff;
-            font-weight: bold;
-        }
-
-        .section-question {
-            color: #0085ff;
-            opacity: 0.7;
-        }
-    </style>
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#table-of-contents">
-<div class="col-sm-12">
-    <nav id="table-of-contents" class="affix">
-        <ul class="nav">
-            <li><a href="#sample-project">Where can I see the actual tests?</a></li>
-            <li><a href="#unit-testing">How does Karma differ from Protractor?</a></li>
-            <li><a href="#installing-karma">How do I install Karma?</a></li>
-            <li><a href="#configuring-karma">How do does Karma know which files to include?</a></li>
-            <li><a href="#basic-jasmine">How is a basic spec organized?</a></li>
-            <li><a href="#including-module">How do I inject a module in a spec?</a></li>
-            <li><a href="#testing-controller">How do I instantiate a controller in a spec?</a></li>
-            <li><a href="#including-service">How do I inject a service in a spec?</a></li>
-            <li><a href="#testing-template">How do I test if an element is in the DOM?</a></li>
-            <li><a href="#testing-route">How do I test route changes?</a></li>
-            <li><a href="#testing-directive">How do I set up a spec for a directive?</a></li>
-            <li><a href="#mocking">How/Why do I mock a service call in a controller spec?</a></li>
-            <li><a href="#spying-methods">How do I determine if one method successfully calls another method?</a></li>
-            <li><a href="#spying-methods">How do I determine what arguments were included when I call a method?</a></li>
-            <li><a href="#testing-promise">How do I handle async operations in a spec?</a></li>
-            <li><a href="#debugging">How do I troubleshoot problems with my specs?</a></li>
-            <li><a href="#best-practices">How do I know I am formatting my specs in the most efficient manner?</a></li>
-        </ul>
-    </nav>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
 
-            <div class="main-content">
-                <h1>AngularJS Unit Testing Quick Start</h1>
-                <h4 class="section-heading" id="sample-project">Introduction</h4>
+<body data-spy="scroll" data-target="#table-of-contents">
+  <div class="col-sm-12">
+    <nav id="table-of-contents" class="affix">
+      <ul class="nav">
+        <li><a href="#sample-project">Where can I see the actual tests?</a></li>
+        <li><a href="#unit-testing">How does Karma differ from Protractor?</a></li>
+        <li><a href="#installing-karma">How do I install Karma?</a></li>
+        <li><a href="#configuring-karma">How do does Karma know which files to include?</a></li>
+        <li><a href="#basic-jasmine">How is a basic spec organized?</a></li>
+        <li><a href="#including-module">How do I inject a module in a spec?</a></li>
+        <li><a href="#testing-controller">How do I instantiate a controller in a spec?</a></li>
+        <li><a href="#including-service">How do I inject a service in a spec?</a></li>
+        <li><a href="#testing-template">How do I test if an element is in the DOM?</a></li>
+        <li><a href="#testing-route">How do I test route changes?</a></li>
+        <li><a href="#testing-directive">How do I set up a spec for a directive?</a></li>
+        <li><a href="#mocking">How/Why do I mock a service call in a controller spec?</a></li>
+        <li><a href="#spying-methods">How do I determine if one method successfully calls another method?</a></li>
+        <li><a href="#spying-methods">How do I determine what arguments were included when I call a method?</a></li>
+        <li><a href="#testing-promise">How do I handle async operations in a spec?</a></li>
+        <li><a href="#debugging">How do I troubleshoot problems with my specs?</a></li>
+        <li><a href="#best-practices">How do I know I am formatting my specs in the most efficient manner?</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="main-content">
+          <h1>AngularJS Unit Testing Quick Start</h1>
+          <h4 class="section-heading" id="sample-project">Introduction</h4>
           <p class="section-question">Why are you doing this?</p>
-          <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy, actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How do I instantiate my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
+          <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy,
+            actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How
+            do I instantiate my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
           <p>I have since covered a lot of ground over the last couple years and I found that once you understand a few basic rules of engagement that testing in Angular is actually pretty straight forward and formulaic.</p>
           <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so that developers can get to that first test without losing their mind</p>
           <p>Please use this material as a bridge to making tests a natural part of your development process. Nothing would make me happier! Enjoy!</p>
@@ -160,23 +75,33 @@
           <p>I like to split my tests up into three different categories:</p>
 
           <ol>
-            <li><strong>End­-to-­End Tests</strong> - These are the tests where you want to mimic an actual user that visits your website. Each test contains a series of simulated user events (ex. go to http://mysite.com/home and then click on the button with ID 'my­-button') and expected results (ex. after 200ms a new window should appear that says "Thank You").</li>
-            <li><strong>Integration Tests</strong> ­ These tests will call directly into your code. For example, you can use an integration test to call an Angular service. Typically each test will focus on one function. The test calls the target function with a set of parameters and then checks to make sure the results match expected values.</li>
-            <li><strong>Unit Tests</strong> ­ These are the same as integration tests except you take extra steps toensure that nothing is executed besides the one function you are testing. For example, when you test a service that uses $http to call a back end API, an integration test would include the API call. A unit test, however, would use a utility we will discuss later called $httpBackend to replace $http so that the code executed by the test is restricted to just the target function.</li>
+            <li>
+              <strong>End­-to-­End Tests</strong> - These are the tests where you want to mimic an actual user that visits your website. Each test contains a series of simulated user events (ex. go to http://mysite.com/home and then click on the button with ID
+              'my­-button') and expected results (ex. after 200ms a new window should appear that says "Thank You").</li>
+            <li>
+              <strong>Integration Tests</strong> ­ These tests will call directly into your code. For example, you can use an integration test to call an Angular service. Typically each test will focus on one function. The test calls the target function with
+              a set of parameters and then checks to make sure the results match expected values.</li>
+            <li>
+              <strong>Unit Tests</strong> ­ These are the same as integration tests except you take extra steps toensure that nothing is executed besides the one function you are testing. For example, when you test a service that uses $http to call a back end
+              API, an integration test would include the API call. A unit test, however, would use a utility we will discuss later called $httpBackend to replace $http so that the code executed by the test is restricted to just the target function.</li>
           </ol>
 
           <p>Protractor is the tool you will use for end-to-end tests while Karma handles integration and unit testing.</p>
 
           <h4 class="section-heading" id="installing-karma">Installing Karma</h4>
           <p class="section-question">How do I install Karma?</p>
-          <pre><code class="js">npm install ­g karma</code></pre>
+          <pre>
+            <code class="js">npm install ­g karma</code>
+          </pre>
 
 
           <h4 class="section-heading" id="configuring-karma">Configuring Karma</h4>
           <p class="section-question">How do does Karma know which files to include?</p>
-          <pre><code class="js">karma init karma.conf.js</code></pre>
+          <pre>
+            <code class="js">karma init karma.conf.js</code>
+          </pre>
 
-          <p>After installing Karma, we need to set up the karma.conf file.  The files array in karma.conf contains all the files needed to run a test. This includes:</p>
+          <p>After installing Karma, we need to set up the karma.conf file. The files array in karma.conf contains all the files needed to run a test. This includes:</p>
 
           <ul>
             <li>Any angular libraries used by your code</li>
@@ -187,851 +112,1016 @@
           <p>Below is an example of a full karma.conf file.</p>
 
 
-          <pre><code class="js">
-// Karma configuration
-// Generated on Sat Nov 08 2014 19:20:47 GMT-0700 (MST)
-
-module.exports = function (config) {
-  config.set({
-
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
-
-
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
-    files: [
-      'src/vendor/angular.min.js',
-      'src/vendor/angular-mocks.js',
-      'src/vendor/angular-ui-router.min.js',
-      'src/assets/js/unit-test-helpers.js',
-      'src/app/**/*.html',
-      'src/app/**/*.spec.js',
-      'src/app/**/*.js'
-    ],
-
-
-    /*********************************************************/
-    // Note: this was added AFTER karma init was completed.
-    /*********************************************************/
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
-      //stripSufix: '.ext',
-
-      // setting this option will create only a single module that contains templates
-      // from all the files, so you can load them all with module('foo')
-      moduleName: 'myAppTemplates'
-    },
-
-    // list of files to exclude
-    exclude: [],
-
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'src/app/**/*.html': ['ng-html2js']
-    },
-
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
-
-
-    // web server port
-    port: 9876,
-
-
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
-
-
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
-  });
-};
-</code></pre>
+          <pre>
+            <code class="js">
+              // Karma configuration // Generated on Sat Nov 08 2014 19:20:47 GMT-0700 (MST) module.exports = function (config) { config.set({ // base path that will be used to resolve all patterns (eg. files, exclude) basePath: '', // frameworks to use // available
+              frameworks: https://npmjs.org/browse/keyword/karma-adapter frameworks: ['jasmine'], // list of files / patterns to load in the browser files: [ 'src/vendor/angular.min.js', 'src/vendor/angular-mocks.js', 'src/vendor/angular-ui-router.min.js',
+              'src/assets/js/unit-test-helpers.js', 'src/app/**/*.html', 'src/app/**/*.spec.js', 'src/app/**/*.js' ], /*********************************************************/ // Note: this was added AFTER karma init was completed. /*********************************************************/
+              ngHtml2JsPreprocessor: { stripPrefix: 'src/', //stripSufix: '.ext', // setting this option will create only a single module that contains templates // from all the files, so you can load them all with module('foo') moduleName: 'myAppTemplates'
+              }, // list of files to exclude exclude: [], // preprocess matching files before serving them to the browser // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor preprocessors: { 'src/app/**/*.html': ['ng-html2js']
+              }, // test results reporter to use // possible values: 'dots', 'progress' // available reporters: https://npmjs.org/browse/keyword/karma-reporter reporters: ['progress'], // web server port port: 9876, // enable / disable colors in the output
+              (reporters and logs) colors: true, // level of logging // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG logLevel: config.LOG_INFO, // enable / disable watching file and
+              executing tests whenever any file changes autoWatch: true, // start these browsers // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher browsers: ['Chrome'], // Continuous Integration mode // if true, Karma captures
+              browsers, runs the tests and exits singleRun: false }); };
+            </code>
+          </pre>
 
           <p>Note that most values in the karma.conf file can be overridden at the command line. For example, if you wanted to run Firefox instead of Chrome you could either change the value in karma.conf or keep the value the same and use this command:</p>
 
-          <pre><code lang="js">karma start ­­browsers Firefox</code></pre>
+          <pre>
+            <code lang="js">karma start ­­browsers Firefox</code>
+          </pre>
 
           <p>I strongly suggest you take an existing karma.conf file like this one and adapt it to meet your needs. As long as you follow the conventions we outline in this guide, the only things you will likely want to change are:</p>
 
           <ul>
             <li>files ­ to include all your custom code, dependencies and test code</li>
             <li>reporters ­ if you want test coverage you will need to include the 'coverage' reporter</li>
-            <li>autoWatch and singleRun ­ most of the time you will want autoWatch=true and singleRun=false so that Karma will automatically re­run your tests as you make changes. However, if you are running Karma as part of a script like a git hook or continuous integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
+            <li>autoWatch and singleRun ­ most of the time you will want autoWatch=true and singleRun=false so that Karma will automatically re­run your tests as you make changes. However, if you are running Karma as part of a script like a git hook or continuous
+              integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
           </ul>
 
           <h4 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h4>
           <p class="section-question">How is a basic spec organized?</p>
 
-          <p><em>File Structure</em></p>
+          <p>
+            <em>File Structure</em>
+          </p>
 
-          <p>In general, you want to have one test file for each and every non­test code file in your app. You should have a common naming scheme so that your build tools and test runners can pick out test files from non­test files. We are using one of the most common test file naming schemes: "{filename}.spec.js". So if you have a code file called "app.js", the file that contains all the tests for app.js would be called "app.spec.js". You will often see all test files in a separate directory from the rest of the code (usually called 'test'), but in the sample code we have put all specs right along side the code they are testing for your convenience.</p>
+          <p>In general, you want to have one test file for each and every non­test code file in your app. You should have a common naming scheme so that your build tools and test runners can pick out test files from non­test files. We are using one of the
+            most common test file naming schemes: "{filename}.spec.js". So if you have a code file called "app.js", the file that contains all the tests for app.js would be called "app.spec.js". You will often see all test files in a separate directory
+            from the rest of the code (usually called 'test'), but in the sample code we have put all specs right along side the code they are testing for your convenience.</p>
 
-          <p><em>Spec Code Structure</em></p>
+          <p>
+            <em>Spec Code Structure</em>
+          </p>
           <p>In general, your spec files should follow this structure:</p>
 
-          <pre><code class="js">
-// src/app/app.spec.js
-// Containing describe block (or "suite"), usually named for an app feature.
-// In this case the feature is the App itself.
-describe('Unit: App', function () {
-
-  // Include Modules
-  beforeEach(module('myApp'));
-  beforeEach(module('myApp.about'));
-  beforeEach(module('myApp.experiments'));
-  beforeEach(module('myApp.home'));
-  beforeEach(module('myApp.models.messages'));
-  beforeEach(module('ui.router'));
-
-  // Suite for testing an individual piece of our feature.
-  describe('App Abstract Route', function () {
-
-    // Instantiate global variables (global to all tests in this describe block).
-    var $state,
-      $rootScope,
-      state = 'app';
-
-    // Inject dependencies
-    beforeEach(inject(function (_$state_, $templateCache, _$rootScope_) {
-      $state = _$state_;
-      $rootScope = _$rootScope_;
-      $templateCache.put('app/home/home.tmpl.html', '');
-    }));
-
-    // It block (or "spec") to test expectations for the
-    // Expectations return true or false.
-    it('verifies state configuration', function () {
-      var config = $state.get(state);
-      expect(config.abstract).toBeTruthy();
-      expect(config.url).toBeUndefined();
-    });
-  });
-});
-</code></pre>
+          <pre>
+            <code class="js">
+              // src/app/app.spec.js // Containing describe block (or "suite"), usually named for an app feature. // In this case the feature is the App itself. describe('Unit: App', function () { // Include Modules beforeEach(module('myApp')); beforeEach(module('myApp.about'));
+              beforeEach(module('myApp.experiments')); beforeEach(module('myApp.home')); beforeEach(module('myApp.models.messages')); beforeEach(module('ui.router')); // Suite for testing an individual piece of our feature. describe('App Abstract Route',
+              function () { // Instantiate global variables (global to all tests in this describe block). var $state, $rootScope, state = 'app'; // Inject dependencies beforeEach(inject(function (_$state_, $templateCache, _$rootScope_) { $state = _$state_;
+              $rootScope = _$rootScope_; $templateCache.put('app/home/home.tmpl.html', ''); })); // It block (or "spec") to test expectations for the // Expectations return true or false. it('verifies state configuration', function () { var config = $state.get(state);
+              expect(config.abstract).toBeTruthy(); expect(config.url).toBeUndefined(); }); }); });
+            </code>
+          </pre>
 
           <p>Two things to note from this example.</p>
 
-          <p>First, you should make liberal use of before, beforeEach, after and afterEach to set up and tear down the appropriate context for tests. Ideally you only have a couple lines of code within each <strong>it()</strong> function.</p>
+          <p>First, you should make liberal use of before, beforeEach, after and afterEach to set up and tear down the appropriate context for tests. Ideally you only have a couple lines of code within each
+            <strong>it()</strong> function.</p>
 
-          <p>The second thing to note is that the first parameter for the <strong>describe()</strong> and <strong>it()</strong> functions may be used by the test runner when tests are executed. For example, when this spec is run, some test runners may output:</p>
+          <p>The second thing to note is that the first parameter for the
+            <strong>describe()</strong> and
+            <strong>it()</strong> functions may be used by the test runner when tests are executed. For example, when this spec is run, some test runners may output:</p>
 
-          <pre><code>Unit: App
-  App Abstract Route
-    verifies state configuration</code></pre>
+          <pre>
+            <code>Unit: App App Abstract Route verifies state configuration</code>
+          </pre>
 
           <p>So, make sure the string values are descriptive.</p>
 
           <h4 class="section-heading" id="including-module">Including a Module</h4>
           <p class="section-question">How do I inject a module in a spec?</p>
 
-          <p>The first thing your spec should do is define all the Angular modules that are needed for the tests in that spec. This is done using the <strong>module()</strong> function that comes from the <strong>angular-mocks</strong> library. For example:
+          <p>The first thing your spec should do is define all the Angular modules that are needed for the tests in that spec. This is done using the
+            <strong>module()</strong> function that comes from the
+            <strong>angular-mocks</strong> library. For example:
 
-          <pre><code lang="js">beforeEach(module('myApp'));</code></pre>
+            <pre>
+              <code lang="js">beforeEach(module('myApp'));</code>
+            </pre>
 
-          <p>This code will enable the spec to test the code from the <strong>myApp</strong> module. It is best practice to use <strong>beforeEach()</strong> instead of just <strong>before()</strong> so that each test is essentially running from a blank slate. If you don't do this, the state from a previous test may bleed into another test and affect the results.</p>
-
-          <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
-          <p class="section-question">How do I instantiate a controller in a spec?</p>
-
-          <p>Here is our controller that we want to test:</p>
-
-          <pre><code lang="js">
-// src/app/about/about.js
-.controller('AboutCtrl', function (Messages) {
-  var about = this;
-  about.title = 'About Page';
-  about.body = 'This is the about page body';
-
-  about.message = Messages.getMessage();
-
-  about.updateMessage = function (m) {
-    Messages.setMessage(m);
-  };
-})
-          </code></pre>
-
-          <p>The <strong>angular­-mocks</strong> library provides a service called <strong>$controller</strong> that we can use to help us test our controllers. In the <strong>beforeEach()</strong> below, we are injecting <strong>$controller</strong> along with any other dependencies we need to instantiate our controller.</p>
-
-          <pre><code lang="js">
-// src/app/about/about.spec.js
-describe('Unit: About', function () {
-
-  // Define global references for injections.
-  var ctrl, messages;
-
-  beforeEach(module('myApp.about'));
-  beforeEach(module('myApp.models.messages'));
-  beforeEach(module('ui.router'));
-
-  beforeEach(inject(function ($controller, _Messages_) {
-    messages = _Messages_;
-
-    spyOn(messages, 'setMessage');
-    spyOn(messages, 'getMessage').and.returnValue('Hello!');
-
-    // Instantiate the controller with an object of the dependencies
-    ctrl = $controller('AboutCtrl', {
-      Messages: messages
-    });
-  }));
-
-  describe('AboutCtrl', function () {
-    // Test some basic expectations about the controller
-    it('should have title defined', function () {
-      expect(ctrl.title).toBeDefined();
-    });
-
-    it('should have body defined', function () {
-      expect(ctrl.body).toBeDefined();
-    });
-
-    it('should call Messages.getMessage', function () {
-      expect(messages.getMessage).toHaveBeenCalled();
-
-      expect(ctrl.message).toEqual('Hello!');
-    });
-
-    it('should call updateMessage on message', function () {
-      var message = 'Hello Message';
-
-      ctrl.updateMessage(message);
-
-      expect(messages.setMessage).toHaveBeenCalledWith(message);
-    });
-  });
-});
-          </code></pre>
-
-          <p>Note that we are using the underscore syntax with <strong>_Messages_</strong> to get a global reference to the <strong>Messages</strong> service. The underscores are ignored by the injector when the reference name is resolved.</p>
-
-          <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a></p>
-
-          <h4 class="section-heading" id="including-service">Including a Service</h4>
-          <p class="section-question">How do I inject a service in a spec?</p>
-
-          <p>Testing an Angular service is a piece of cake. You can use the <strong>inject()</strong> function from angular-mocks to get a reference to either internal Angular core objects or any of your custom objects in the modules that are defined at the top of the spec. For example:</p>
-
-          <pre><code lang="js">beforeEach(inject(function(someService, someFactory) {
-
-    localSomeService = someService;
-
-    localSomeFactory = someFactory;
-
-}));</code></pre>
-
-          <p>As a best practice, we suggest injecting objects in <strong>beforeEach()</strong> and saving the object to a local variable. Then in the test we just reference that local variable.</p>
-
-          <h4 class="section-heading" id="testing-template">Testing a Template</h4>
-          <p class="section-question">How do I test if an element is in the DOM?</p>
-
-          <p>The most tricky thing to test with Angular is code within templates. That is why you should try to reduce the amount of code in your templates as much as possible. Even if you are really good about this, though, you will always have some template code that you want to test.</p>
-
-          <p>You can split template testing into two categories. The first category includes templates that don't have any controllers, includes or custom directives. Essentially you are just testing logic that uses basic Angular expressions and core Angular directives. This use case is relatively easy to test. Take the following example:</p>
-
-
-    <pre><code lang="html">&#60;!DOCTYPE html&#62;
-&#60;html&#62;
-&#60;head&#62;
-    &#60;title&#62;&#60;/title&#62;
-&#60;/head&#62;
-
-&#60;body&#62;
-    &#60;h1&#62;{{home.title}}&#60;/h1&#62;
-
-    &#60;p&#62;{{home.body}}&#60;/p&#62;
-    &#60;hr&#62;
-
-    &#60;div&#62;
-        &#60;h2 class="text-error"&#62;Home: {{home.message}}&#60;/h2&#62;
-
-        &#60;form class="form-inline"&#62;
-            &#60;input class="form-control" placeholder="Message" type="text"&#62;
-            &#60;button class="btn btn-default" type="submit"&#62;Update Message&#60;/button&#62;
-        &#60;/form&#62;
-    &#60;/div&#62;
-&#60;/body&#62;
-&#60;/html&#62;</code></pre>
-
-
-
-          <p>We want to have access to this HTML file in our tests, but it is generally a bad idea to make an http call within your tests if you can avoid it. Fortunately, there is a nice feature in Karma that allows us to automatically package all of our HTML template files into an Angular module that we can access easily in our tests. Just add the following to your <strong>karma.conf.js</strong> file:</p>
-
-          <pre><code lang="js">
-// karma.conf.js
-ngHtml2JsPreprocessor: {
-  stripPrefix: 'src/',
-  // stripSufix: '.ext',
-
-  // setting this option will create only a single module that contains templates
-  // from all the files, so you can load them all with module('foo')
-  moduleName: 'myAppTemplates'
-}
-          </code></pre>
-
-          <p>This will automatically package any file ending in .html within your src/ folder into an Angular module called myAppTemplates. Each template is accessible by using the <strong>$templateCache</strong>  service. You can can test this template simply by injecting the <strong>$compile</strong> service with some test  data and then checking the resulting HTML:</p>
-
-          <pre><code lang="js">
-describe('UNIT test myTemplates', function() {
-  beforeEach(module('myAppTemplates'));
-    describe('home template', function() {
-      var homeTemplate,
-        compile;
-
-      beforeEach(inject($templateCache, $compile) {
-        homeTemplate = $templateCache.get('app / home / home.tmpl.html');
-        compile = $compile;
-      });
-
-      it('should have an h1 with my title', function() {
-        var testScope = {
-          home: {
-            title: 'blah'
-          }
-        });
-
-        var elem = compile(homeTemplate)(testScope);
-        expect(element.find('h1').text()).toBe('blah');
-      });
-    });
-  });
-});
-          </code></pre>
-
-          <p>The second category of template testing is unfortunately more complex. We need to deal with dependencies within the template or surrounding the template such as a controller, the UI router, directives, etc. Let's look at one example of a more complex use case that includes a UI Router state and a controller:</p>
-
-          <pre><code lang="js">
-// app/home/home.js
-.config(function ($stateProvider) {
-  $stateProvider
-    .state('about', {
-      url: '/about',
-      templateUrl: 'app/about/about.tmpl.html',
-      controller: 'AboutCtrl as about'
-    })
-  ;
-})
-.controller('AboutCtrl', function (Messages) {
-  var about = this;
-  about.title = 'About Page';
-  about.body = 'This is the about page body';
-
-  about.message = Messages.getMessage();
-
-  about.updateMessage = function (m) {
-    Messages.setMessage(m);
-  };
-})
-          </code></pre>
-
-          <p>In order to test the template and associated controller code, we need to instantiate the controller and surrounding context. To that end, we have created a helper function called <strong>compileRouteTemplateWithController</strong> that does everything we need.</p>
-
-          <pre><code lang="js">
-function compileRouteTemplateWithController($injector, state) {
-  var $rootScope = $injector.get('$rootScope');
-  var $templateCache = $injector.get('$templateCache');
-  var $compile = $injector.get('$compile');
-  var $state = $injector.get('$state');
-  var $controller = $injector.get('$controller');
-
-  var scope = $rootScope.$new();
-  var stateDetails = $state.get(state);
-  var html = $templateCache.get(stateDetails.templateUrl);
-
-  var ctrl = scope.home = $controller('HomeCtrl');
-  $rootScope.$digest();
-  var compileFn = $compile(angular.element('&#60;div&#62;&#60;/div&#62;').html(html));
-
-  return {
-    controller: ctrl,
-    scope: scope,
-    render: function () {
-      var element = compileFn(scope);
-      $rootScope.$digest();
-      return element;
-    }
-  };
-}
-          </code></pre>
-
-          <p>We are using this helper function to get all the dependencies we need to run our tests. This includes creating scope, a controller and a render function. Feel free to use this and adapt it to your needs. Also, as an aside, whenever you see a lot of repetitive code within your tests, make sure you create your own helper functions.</p>
-
-          <p>OK, now we have everything in place to test our template.</p>
-
-          <pre><code lang="js">
-describe('home page', function () {
-  // Define global references for injections.
-  var element, render, ctrl, scope;
-
-  beforeEach(inject(function ($injector) {
-    // Call the helper function that "creates" a page.
-    // This just creates references to the attributes
-    // on the returned object for use in this suite.
-    var routeDetails = compileRouteTemplateWithController($injector, 'home');
-    ctrl = routeDetails.controller;
-    scope = routeDetails.scope;
-
-    render = function () {
-      element = routeDetails.render();
-    };
-  }));
-
-  // Test your expectations. You can use ordinary jQuery methods
-  it('should render the page title', function () {
-    scope.home.title = 'Hello';
-    render();
-    expect(element.find('h1').text()).toBe('Hello');
-  });
-
-  it('should have body defined', function () {
-    scope.home.body = 'body...';
-    render();
-    expect(element.find('p').text()).toBe('body...');
-  });
-
-  it('should call Messages.getMessage', function () {
-    render();
-    expect(Messages.getMessage).toHaveBeenCalled();
-
-    ctrl.updateMessage('yo!');
-    expect(Messages.setMessage).toHaveBeenCalled();
-  });
-
-  it('should call Messages.setMessage when submit is clicked', function () {
-    render();
-    element.find('input').val('Lukas');
-    element.find('input').triggerHandler('input');
-    scope.$digest();
-
-    element.find('button').triggerHandler('click');
-    scope.$digest();
-
-    expect(Messages.getMessage).toHaveBeenCalled();
-    expect(scope.home.message).toEqual('Lukas');
-  });
-
-  it('should call updateMessage on message', function () {
-    var message = 'Hello Message';
-
-    ctrl.updateMessage(message);
-
-    expect(Messages.setMessage).toHaveBeenCalledWith(message);
-  });
-});
-          </code></pre>
-
-          <p>The key part of this test was the use of the helper function to instantiate the template and all required dependencies:</p>
-
-          <pre><code lang="js">
-var routeDetails = compileRouteTemplateWithController($injector, 'home');
-ctrl = routeDetails.controller;
-scope = routeDetails.scope;
-
-render = function () {
-  element = routeDetails.render();
-};
-          </code></pre>
-
-
-          <h4 class="section-heading" id="testing-route">Testing a Route</h4>
-          <p class="section-question">How do I test route changes?</p>
-
-          <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly during the config phase. For example, given the following state configuration:</p>
-
-          <pre><code lang="js">
-// app/about/about.js
-.config(function ($stateProvider) {
-  $stateProvider
-    .state('about', {
-      url: '/about',
-      templateUrl: 'app/about/about.tmpl.html',
-      controller: 'AboutCtrl as about'
-    })
-  ;
-})
-          </code></pre>
-
-          <p>Our basic strategy for testing is to use the <strong>$state.go()</strong> and <strong>$state.href()</strong> methods to modify the current state and then check to make sure the route is changed appropriately.</p>
-
-          <pre><code lang="js">
-// app/about/about.spec.js
-describe('About Route', function () {
-  // Define global references for injections
-  var $state,
-    $rootScope,
-    state = 'about';
-
-  // Inject and assign the $state and $rootScope services.
-  // Put the template in template cache.
-  beforeEach(inject(function (_$state_, $templateCache, _$rootScope_) {
-    $state = _$state_;
-    $rootScope = _$rootScope_;
-
-    $templateCache.put('app/about/about.tmpl.html', '');
-  }));
-
-  // Test whether the url is correct
-  it('should respond to URL', function() {
-    expect($state.href(state)).toEqual('/about');
-  });
-
-  // Test whether our state activates correctly
-  it('should activate the state', function() {
-    $state.go(state);
-    $rootScope.$digest();
-    expect($state.current.name).toBe(state);
-  });
-});
-          </code></pre>
-
-          <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
-          <p class="section-question">How do I set up a spec for a directive?</p>
-
-          <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key is to pass in a HTML snippet to <strong>$compile()</strong> that refers to the target directive. For example, if you had an element directive called 'experiment', you would simply call <strong>$compile("&#60;experiment&#62;&#60;/experiment&#62;")</strong>. You can see the full example here:</p>
-
-          <pre><code lang="js">
-// app/experiments/experiments.js
-.directive('experiment', function(){
-  var linker = function (scope, element, attrs) {
-    element.on('click', function(){
-      scope.doExperiment();
-    })
-  };
-
-  var controller =  function($scope){
-    $scope.doExperiment = function() {
-      $scope.$apply(function(){
-        $scope.experiment.completed++;
-      });
-    };
-  };
-
-  return {
-    scope: true,
-    restrict: 'E',
-    template: '&#60;div class="experiment"&#62;' +
-      '&#60;h3&#62;{{experiment.name}}&#60;/h3&#62;' +
-      '&#60;p&#62;{{experiment.description}}&#60;/p&#62;' +
-      '&#60;p&#62;&#60;strong&#62;{{experiment.completed}}&#60;/strong&#62;&#60;/p&#62;' +
-      '&#60;/div&#62;',
-    link: linker,
-    controller: controller
-  }
-})
-          </code></pre>
-
-          And the spec.
-
-          <pre><code lang="js">
-// app/experiments/experiments.spec.js
-describe('Experiments Directive', function () {
-  // Define global references for injections
-  var element, experiment;
-
-  beforeEach(inject(function ($rootScope, $compile) {
-    // Mock out an experiment
-    $rootScope.experiment = {
-      "name": "Experiment 1",
-      "description": "This is an experiment",
-      "completed": 0
-    };
-    // Create an html element with the directive
-    element = angular.element('&#60;experiment&#62;&#60;/experiement&#62;');
-    // Compile the element and $rootScope,
-    // which essentially instantiates the directive as it would be on a web page.
-    $compile(element)($rootScope);
-  }));
-
-  it('should increment experiment completed count', function () {
-    // Get the directive's scope
-    var localScope = element.scope();
-
-    // Test some expectations about the directive.
-    expect(localScope.experiment.completed).toBe(0);
-
-    localScope.doExperiment();
-
-    expect(localScope.experiment.completed).toBe(1);
-  });
-})
-          </code></pre>
-
-          <p>Note: depending on what your directive does, you may need to modify the HTML passed into <strong>$compile</strong>. For example, if the directive expects other attributes on the element or if you are testing a directive with transclusion (in which case you will want to put different snippets of HTML as children to the element that has the directive).</p>
-
-          <h4 class="section-heading" id="mocking">Mocking</h4>
-          <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
-
-          <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma. When you are writing a unit test, your goal is to test just one thing and either eliminate or mock out all other dependencies. In general, you can mock any object through the use of the <strong>$provide</strong> service. You use this service when you define the module you are using in your spec. For example:
-
-          <pre><code lang="js">
-beforeEach(module("app", function($provide) {
-    $provide.value("SimpleService", {
-        someFn: function() {}
-    });
-}));
-          </code></pre>
-
-          <p>In this case, we are overriding the SimpleService object. Once we do this, any code that injects SimpleService will get our mock object instead of the actual SimpleService.</p>
-
-          <p>There is one special case with mocking where Angular helps you out. Whenever you use <strong>$http</strong> to make a remote call, Angular has another service behind the scenes called <strong>$httpBackend</strong> that actually does all the hard work. The angular­mocks library has its own version of <strong>$httpBackend</strong> with a number of goodies to help us mock out calls to the back end. For example look at this code which makes an <strong>$http</strong> call:</p>
-
-          <pre><code lang="js">
-// app/experiments/experiments.js
-.service('Experiments', function($http) {
-    var service = this;
-
-    service.getExperiments = function() {
-      return $http.get('data/experiments.json');
-    };
-})
-          </code></pre>
-
-          <p>If we call <strong>getExperiments()</strong> in our test, it will make an actual http request to data/experiments.json. We can intercept that call with <strong>$httpBackend</strong>, however, and define what should be returned instead of making a remote call.</p>
-
-          <pre><code lang="js">
-// app/experiments/experiments.spec.js
-describe('Experiments Model', function () {
-  // After every spec, do the following:
-  afterEach(inject(function ($httpBackend) {
-    // Make sure we have flushed all of our requests.
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
-  }));
-
-  it('Should get experiments', inject(function (Experiments, $httpBackend, $rootScope) {
-    var mockResponse = [];
-    // Every time we hit the specified url,
-    // respond with mockResponse( in this case an empty array).
-    $httpBackend.when('GET', 'data/experiments.json').respond(mockResponse);
-
-    // The promise reference now holds the $http call returned
-    var promise = Experiments.getExperiments();
-    // Flush the backend
-    $httpBackend.flush();
-
-    // Use .then() like you would normally.
-    promise.then(function (result) {
-      expect(result.data).toEqual(mockResponse);
-    });
-
-    // Manually trigger a $digest cycle
-    $rootScope.$digest();
-  }));
-});
-          </code></pre>
-
-          <p>Note that <strong>$httpBackend.flush()</strong> is needed because normally $http is asynchronous, but we want to execute our test in a synchronous fashion. The call to <strong>flush()</strong> will ensure that the <strong>.then()</strong> on the promise returned from $http will be executed immediately.</p>
-
-          <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
-          <p class="section-question">How do I determine if one method successfully calls another method?<br>
-          How do I determine what arguments were included when I call a method?</p>
-
-          <p>Jasmine uses a spy to determine whether a method has been called and/or what arguments are set into a method call. So, for example:</p>
-
-          <pre><code lang="js">
-var foo, bar = null;
-
-beforeEach(function() {
-    // Here we create a simple object foo with a method setBar, which takes one argument.
-    foo = {
-        setBar: function(value) {
-          bar = value;
-        }
-    }
-};
-
-// Now whenever foo.setBar is called in this spec or in the source code,
-// we can perform assertions on it.
-spyOn(foo, 'setBar');
-
-foo.setBar(123);
-
-it("tracks that the spy was called", function() {
-    expect(foo.setBar).toHaveBeenCalled();
-});
-
-it("tracks the arguments of its calls", function() {
-    expect(foo.setBar).toHaveBeenCalledWith(123);
-});
-          </code></pre>
-
-
-        <p>A spy only exists within the <strong>describe()</strong> or <strong>it()</strong> function where it has been defined.</p>
-
-        <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
-
-        <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should return (using returnValue()) or what fake function the spy should run instead of the target function (using callFake()). For example:</p>
-
-        <pre><code lang="js">
-// app/experiments/experiments.js
-.controller('ExperimentsCtrl', function (Messages, Experiments) {
-  var experiments = this;
-  experiments.title = 'Experiments Page';
-  experiments.body = 'This is the about experiments body';
-
-  experiments.message = Messages.getMessage();
-
-  Experiments.getExperiments()
-    .then(function(result){
-      experiments.experiments = result.data;
-    });
-
-  experiments.updateMessage = function (m) {
-    Messages.setMessage(m);
-  };
-})
-      </code></pre>
-
-          And the spec.
-
-      <pre><code lang="js">
-// app/experiments/experiments.spec.js
-describe('ExperimentsCtrl', function () {
-    // Inject and assign services and create the controller.
-    beforeEach(inject(function ($controller, _Messages_, _Experiments_, $q) {
-    messages = _Messages_;
-    experiments = _Experiments_;
-
-    // Here we create a spy just like before,
-    // but now it is spying on a method attached to a service.
-    spyOn(messages, 'setMessage');
-    // Every time Messages.getMessage is called,
-    // we want the value 'Hello!' to be returned.
-    spyOn(messages, 'getMessage').and.returnValue('Hello!');
-
-    // Every time Messages.getExperiments is called,
-    // we execute the function contained within the callFake method.
-    spyOn(experiments, 'getExperiments').and.callFake(
-      function () {
-        // Since we don't want to deal with an $http call
-        // in the controller, we mock it out using $q.
-        var deferred = $q.defer();
-        deferred.resolve({data: []});
-        return deferred.promise;
-      }
-    );
-
-    ctrl = $controller('ExperimentsCtrl', {
-      Messages: messages,
-      Experiments: experiments
-    });
-  }));
-
-  // Now we can see if the methods we are spying on actually execute;
-  // also, we can test some expectations on the portions of the controller
-  // that interact with our spies.
-  it('should call Messages.getMessage', function () {
-    expect(messages.getMessage).toHaveBeenCalled();
-
-    expect(ctrl.message).toEqual('Hello!');
-  });
-
-  it('should call updateMessage on message', function () {
-    var message = 'Hello Message';
-
-    ctrl.updateMessage(message);
-
-    expect(messages.setMessage).toHaveBeenCalledWith(message);
-  });
-});
-      </code></pre>
-
-          <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
-          <p class="section-question">How do I handle async operations in a spec?</p>
-
-          <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will complete before the operation completes. There are ways of handling specific use cases (for example <strong>$httpBackend.flush()</strong> as mentioned earlier), but you can also use the Jasmine <strong>done()</strong> function. For example:</p>
-
-          <pre><code lang="js">
-it('should do something', function(done) {
-  someAsyncOperation
-    .then(function() {
-      done();
-    })
-    .catch(function(err) {
-      done(err);
-    });
-});
-          </code></pre>
-
-          <p>In this example, the test will not complete until <strong>done()</strong> is called. If <strong>done()</strong> contains a parameter, Jasmine treats that as an error and fails the test.</p>
-
-          <p>One last note on async operations. You may have noticed in our examples a call to <strong>$rootScope.$digest()</strong>. This will force the digest cycle to run which is needed whenever we are testing anything athat involves watchers (so, anything with templates).</p>
-
-          <h4 class="section-heading" id="debugging">Debugging</h4>
-          <p class="section-question">How do I troubleshoot problems with my specs?</p>
-
-          <p>Spec code is run in the browser just like any other client side code. So, how do you debug your Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with Chrome there should be a Chrome window open on your machine that contains the output of the test. To debug, simply open up the Chrome dev tools and refresh the page.</p>
-
-          <h4 class="section-heading" id="best-practices">Best Practices</h4>
-          <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
-
-          <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
-          <ul>
-            <li>Use <strong>beforeEach()</strong> to set up the context for your tests.</li>
-            <li>Make sure the string descriptions you put in <strong>describe()</strong> and <strong>it()</strong> make sense as output</li>
-            <li>Use <strong>after()</strong> and <strong>afterEach()</strong> to cleanup your tests if there is any state that may bleed over.</li>
-            <li>If any one test is over 10 lines of code, you may need to refactor the test</li>
-            <li>If you find yourself repeating the same code for many tests, refactor the common code into a helper function</li>
-          </ul>
-
-          <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
-
-          <p>Pending</p>
-            </div>
+            <p>This code will enable the spec to test the code from the
+              <strong>myApp</strong> module. It is best practice to use
+              <strong>beforeEach()</strong> instead of just
+              <strong>before()</strong> so that each test is essentially running from a blank slate. If you don't do this, the state from a previous test may bleed into another test and affect the results.</p>
+
+            <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
+            <p class="section-question">How do I instantiate a controller in a spec?</p>
+
+            <p>Here is our controller that we want to test:</p>
+
+            <pre>
+              <code lang="js">
+                // src/app/about/about.js .controller('AboutCtrl', function (Messages) { var about = this; about.title = 'About Page'; about.body = 'This is the about page body'; about.message = Messages.getMessage(); about.updateMessage = function (m) { Messages.setMessage(m);
+                }; })
+              </code>
+            </pre>
+
+            <p>The
+              <strong>angular­-mocks</strong> library provides a service called
+              <strong>$controller</strong> that we can use to help us test our controllers. In the
+              <strong>beforeEach()</strong> below, we are injecting
+              <strong>$controller</strong> along with any other dependencies we need to instantiate our controller.</p>
+
+            <pre>
+              <code lang="js">
+                // src/app/about/about.spec.js describe('Unit: About', function () { // Define global references for injections. var ctrl, messages; beforeEach(module('myApp.about')); beforeEach(module('myApp.models.messages')); beforeEach(module('ui.router')); beforeEach(inject(function
+                ($controller, _Messages_) { messages = _Messages_; spyOn(messages, 'setMessage'); spyOn(messages, 'getMessage').and.returnValue('Hello!'); // Instantiate the controller with an object of the dependencies ctrl = $controller('AboutCtrl',
+                { Messages: messages }); })); describe('AboutCtrl', function () { // Test some basic expectations about the controller it('should have title defined', function () { expect(ctrl.title).toBeDefined(); }); it('should have body defined', function
+                () { expect(ctrl.body).toBeDefined(); }); it('should call Messages.getMessage', function () { expect(messages.getMessage).toHaveBeenCalled(); expect(ctrl.message).toEqual('Hello!'); }); it('should call updateMessage on message', function
+                () { var message = 'Hello Message'; ctrl.updateMessage(message); expect(messages.setMessage).toHaveBeenCalledWith(message); }); }); });
+              </code>
+            </pre>
+
+            <p>Note that we are using the underscore syntax with
+              <strong>_Messages_</strong> to get a global reference to the
+              <strong>Messages</strong> service. The underscores are ignored by the injector when the reference name is resolved.</p>
+
+            <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a></p>
+
+            <h4 class="section-heading" id="including-service">Including a Service</h4>
+            <p class="section-question">How do I inject a service in a spec?</p>
+
+            <p>Testing an Angular service is a piece of cake. You can use the
+              <strong>inject()</strong> function from angular-mocks to get a reference to either internal Angular core objects or any of your custom objects in the modules that are defined at the top of the spec. For example:</p>
+
+            <pre>
+              <code lang="js">beforeEach(inject(function(someService, someFactory) { localSomeService = someService; localSomeFactory = someFactory; }));
+
+              </code>
+            </pre>
+
+            <p>As a best practice, we suggest injecting objects in
+              <strong>beforeEach()</strong> and saving the object to a local variable. Then in the test we just reference that local variable.</p>
+
+            <h4 class="section-heading" id="testing-template">Testing a Template</h4>
+            <p class="section-question">How do I test if an element is in the DOM?</p>
+
+            <p>The most tricky thing to test with Angular is code within templates. That is why you should try to reduce the amount of code in your templates as much as possible. Even if you are really good about this, though, you will always have some template
+              code that you want to test.</p>
+
+            <p>You can split template testing into two categories. The first category includes templates that don't have any controllers, includes or custom directives. Essentially you are just testing logic that uses basic Angular expressions and core Angular
+              directives. This use case is relatively easy to test. Take the following example:</p>
+
+
+            <pre>
+              <code lang="html">&#60;!DOCTYPE html&#62; &#60;html&#62; &#60;head&#62; &#60;title&#62;&#60;/title&#62; &#60;/head&#62; &#60;body&#62; &#60;h1&#62;{{home.title}}&#60;/h1&#62; &#60;p&#62;{{home.body}}&#60;/p&#62; &#60;hr&#62; &#60;div&#62; &#60;h2 class="text-error"&#62;Home:
+                {{home.message}}&#60;/h2&#62; &#60;form class="form-inline"&#62; &#60;input class="form-control" placeholder="Message" type="text"&#62; &#60;button class="btn btn-default" type="submit"&#62;Update Message&#60;/button&#62; &#60;/form&#62;
+                &#60;/div&#62; &#60;/body&#62; &#60;/html&#62;
+              </code>
+            </pre>
+
+
+
+            <p>We want to have access to this HTML file in our tests, but it is generally a bad idea to make an http call within your tests if you can avoid it. Fortunately, there is a nice feature in Karma that allows us to automatically package all of
+              our HTML template files into an Angular module that we can access easily in our tests. Just add the following to your
+              <strong>karma.conf.js</strong> file:</p>
+
+            <pre>
+              <code lang="js">
+                // karma.conf.js ngHtml2JsPreprocessor: { stripPrefix: 'src/', // stripSufix: '.ext', // setting this option will create only a single module that contains templates // from all the files, so you can load them all with module('foo') moduleName: 'myAppTemplates'
+                }
+              </code>
+            </pre>
+
+            <p>This will automatically package any file ending in .html within your src/ folder into an Angular module called myAppTemplates. Each template is accessible by using the
+              <strong>$templateCache</strong> service. You can can test this template simply by injecting the
+              <strong>$compile</strong> service with some test data and then checking the resulting HTML:</p>
+
+            <pre>
+              <code lang="js">
+                describe('UNIT test myTemplates', function() { beforeEach(module('myAppTemplates')); describe('home template', function() { var homeTemplate, compile; beforeEach(inject($templateCache, $compile) { homeTemplate = $templateCache.get('app / home / home.tmpl.html');
+                compile = $compile; }); it('should have an h1 with my title', function() { var testScope = { home: { title: 'blah' } }); var elem = compile(homeTemplate)(testScope); expect(element.find('h1').text()).toBe('blah'); }); }); }); });
+              </code>
+            </pre>
+
+            <p>The second category of template testing is unfortunately more complex. We need to deal with dependencies within the template or surrounding the template such as a controller, the UI router, directives, etc. Let's look at one example of a more
+              complex use case that includes a UI Router state and a controller:</p>
+
+            <pre>
+              <code lang="js">
+                // app/home/home.js .config(function ($stateProvider) { $stateProvider .state('about', { url: '/about', templateUrl: 'app/about/about.tmpl.html', controller: 'AboutCtrl as about' }) ; }) .controller('AboutCtrl', function (Messages) { var about = this;
+                about.title = 'About Page'; about.body = 'This is the about page body'; about.message = Messages.getMessage(); about.updateMessage = function (m) { Messages.setMessage(m); }; })
+              </code>
+            </pre>
+
+            <p>In order to test the template and associated controller code, we need to instantiate the controller and surrounding context. To that end, we have created a helper function called
+              <strong>compileRouteTemplateWithController</strong> that does everything we need.</p>
+
+            <pre>
+              <code lang="js">
+                function compileRouteTemplateWithController($injector, state) { var $rootScope = $injector.get('$rootScope'); var $templateCache = $injector.get('$templateCache'); var $compile = $injector.get('$compile'); var $state = $injector.get('$state'); var $controller
+                = $injector.get('$controller'); var scope = $rootScope.$new(); var stateDetails = $state.get(state); var html = $templateCache.get(stateDetails.templateUrl); var ctrl = scope.home = $controller('HomeCtrl'); $rootScope.$digest(); var compileFn
+                = $compile(angular.element('&#60;div&#62;&#60;/div&#62;').html(html)); return { controller: ctrl, scope: scope, render: function () { var element = compileFn(scope); $rootScope.$digest(); return element; } }; }
+              </code>
+            </pre>
+
+            <p>We are using this helper function to get all the dependencies we need to run our tests. This includes creating scope, a controller and a render function. Feel free to use this and adapt it to your needs. Also, as an aside, whenever you see
+              a lot of repetitive code within your tests, make sure you create your own helper functions.</p>
+
+            <p>OK, now we have everything in place to test our template.</p>
+
+            <pre>
+              <code lang="js">
+                describe('home page', function () { // Define global references for injections. var element, render, ctrl, scope; beforeEach(inject(function ($injector) { // Call the helper function that "creates" a page. // This just creates references to the attributes
+                // on the returned object for use in this suite. var routeDetails = compileRouteTemplateWithController($injector, 'home'); ctrl = routeDetails.controller; scope = routeDetails.scope; render = function () { element = routeDetails.render();
+                }; })); // Test your expectations. You can use ordinary jQuery methods it('should render the page title', function () { scope.home.title = 'Hello'; render(); expect(element.find('h1').text()).toBe('Hello'); }); it('should have body defined',
+                function () { scope.home.body = 'body...'; render(); expect(element.find('p').text()).toBe('body...'); }); it('should call Messages.getMessage', function () { render(); expect(Messages.getMessage).toHaveBeenCalled(); ctrl.updateMessage('yo!');
+                expect(Messages.setMessage).toHaveBeenCalled(); }); it('should call Messages.setMessage when submit is clicked', function () { render(); element.find('input').val('Lukas'); element.find('input').triggerHandler('input'); scope.$digest();
+                element.find('button').triggerHandler('click'); scope.$digest(); expect(Messages.getMessage).toHaveBeenCalled(); expect(scope.home.message).toEqual('Lukas'); }); it('should call updateMessage on message', function () { var message = 'Hello
+                Message'; ctrl.updateMessage(message); expect(Messages.setMessage).toHaveBeenCalledWith(message); }); });
+              </code>
+            </pre>
+
+            <p>The key part of this test was the use of the helper function to instantiate the template and all required dependencies:</p>
+
+            <pre>
+              <code lang="js">
+                var routeDetails = compileRouteTemplateWithController($injector, 'home'); ctrl = routeDetails.controller; scope = routeDetails.scope; render = function () { element = routeDetails.render(); };
+              </code>
+            </pre>
+
+
+            <h4 class="section-heading" id="testing-route">Testing a Route</h4>
+            <p class="section-question">How do I test route changes?</p>
+
+            <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly during the config phase. For example, given the following state configuration:</p>
+
+            <pre>
+              <code lang="js">
+                // app/about/about.js .config(function ($stateProvider) { $stateProvider .state('about', { url: '/about', templateUrl: 'app/about/about.tmpl.html', controller: 'AboutCtrl as about' }) ; })
+              </code>
+            </pre>
+
+            <p>Our basic strategy for testing is to use the
+              <strong>$state.go()</strong> and
+              <strong>$state.href()</strong> methods to modify the current state and then check to make sure the route is changed appropriately.</p>
+
+            <pre>
+              <code lang="js">
+                // app/about/about.spec.js describe('About Route', function () { // Define global references for injections var $state, $rootScope, state = 'about'; // Inject and assign the $state and $rootScope services. // Put the template in template cache. beforeEach(inject(function
+                (_$state_, $templateCache, _$rootScope_) { $state = _$state_; $rootScope = _$rootScope_; $templateCache.put('app/about/about.tmpl.html', ''); })); // Test whether the url is correct it('should respond to URL', function() { expect($state.href(state)).toEqual('/about');
+                }); // Test whether our state activates correctly it('should activate the state', function() { $state.go(state); $rootScope.$digest(); expect($state.current.name).toBe(state); }); });
+              </code>
+            </pre>
+
+            <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
+            <p class="section-question">How do I set up a spec for a directive?</p>
+
+            <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key is to pass in a HTML snippet to
+              <strong>$compile()</strong> that refers to the target directive. For example, if you had an element directive called 'experiment', you would simply call
+              <strong>$compile("&#60;experiment&#62;&#60;/experiment&#62;")</strong>. You can see the full example here:</p>
+
+            <pre>
+              <code lang="js">
+                // app/experiments/experiments.js .directive('experiment', function(){ var linker = function (scope, element, attrs) { element.on('click', function(){ scope.doExperiment(); }) }; var controller = function($scope){ $scope.doExperiment = function() { $scope.$apply(function(){
+                $scope.experiment.completed++; }); }; }; return { scope: true, restrict: 'E', template: '&#60;div class="experiment"&#62;' + '&#60;h3&#62;{{experiment.name}}&#60;/h3&#62;' + '&#60;p&#62;{{experiment.description}}&#60;/p&#62;' + '&#60;p&#62;&#60;strong&#62;{{experiment.completed}}&#60;/strong&#62;&#60;/p&#62;'
+                + '&#60;/div&#62;', link: linker, controller: controller } })
+              </code>
+            </pre>
+
+            And the spec.
+
+            <pre>
+              <code lang="js">
+                // app/experiments/experiments.spec.js describe('Experiments Directive', function () { // Define global references for injections var element, experiment; beforeEach(inject(function ($rootScope, $compile) { // Mock out an experiment $rootScope.experiment
+                = { "name": "Experiment 1", "description": "This is an experiment", "completed": 0 }; // Create an html element with the directive element = angular.element('&#60;experiment&#62;&#60;/experiement&#62;'); // Compile the element and $rootScope,
+                // which essentially instantiates the directive as it would be on a web page. $compile(element)($rootScope); })); it('should increment experiment completed count', function () { // Get the directive's scope var localScope = element.scope();
+                // Test some expectations about the directive. expect(localScope.experiment.completed).toBe(0); localScope.doExperiment(); expect(localScope.experiment.completed).toBe(1); }); })
+              </code>
+            </pre>
+
+            <p>Note: depending on what your directive does, you may need to modify the HTML passed into
+              <strong>$compile</strong>. For example, if the directive expects other attributes on the element or if you are testing a directive with transclusion (in which case you will want to put different snippets of HTML as children to the element that has
+              the directive).</p>
+
+            <h4 class="section-heading" id="mocking">Mocking</h4>
+            <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
+
+            <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma. When you are writing a unit test, your goal is to test just one thing and either eliminate or mock out all other dependencies. In general,
+              you can mock any object through the use of the
+              <strong>$provide</strong> service. You use this service when you define the module you are using in your spec. For example:
+
+              <pre>
+                <code lang="js">
+                  beforeEach(module("app", function($provide) { $provide.value("SimpleService", { someFn: function() {} }); }));
+                </code>
+              </pre>
+
+              <p>In this case, we are overriding the SimpleService object. Once we do this, any code that injects SimpleService will get our mock object instead of the actual SimpleService.</p>
+
+              <p>There is one special case with mocking where Angular helps you out. Whenever you use
+                <strong>$http</strong> to make a remote call, Angular has another service behind the scenes called
+                <strong>$httpBackend</strong> that actually does all the hard work. The angular­mocks library has its own version of
+                <strong>$httpBackend</strong> with a number of goodies to help us mock out calls to the back end. For example look at this code which makes an
+                <strong>$http</strong> call:</p>
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.js .service('Experiments', function($http) { var service = this; service.getExperiments = function() { return $http.get('data/experiments.json'); }; })
+                </code>
+              </pre>
+
+              <p>If we call
+                <strong>getExperiments()</strong> in our test, it will make an actual http request to data/experiments.json. We can intercept that call with
+                <strong>$httpBackend</strong>, however, and define what should be returned instead of making a remote call.</p>
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.spec.js describe('Experiments Model', function () { // After every spec, do the following: afterEach(inject(function ($httpBackend) { // Make sure we have flushed all of our requests. $httpBackend.verifyNoOutstandingExpectation();
+                  $httpBackend.verifyNoOutstandingRequest(); })); it('Should get experiments', inject(function (Experiments, $httpBackend, $rootScope) { var mockResponse = []; // Every time we hit the specified url, // respond with mockResponse( in this
+                  case an empty array). $httpBackend.when('GET', 'data/experiments.json').respond(mockResponse); // The promise reference now holds the $http call returned var promise = Experiments.getExperiments(); // Flush the backend $httpBackend.flush();
+                  // Use .then() like you would normally. promise.then(function (result) { expect(result.data).toEqual(mockResponse); }); // Manually trigger a $digest cycle $rootScope.$digest(); })); });
+                </code>
+              </pre>
+
+              <p>Note that
+                <strong>$httpBackend.flush()</strong> is needed because normally $http is asynchronous, but we want to execute our test in a synchronous fashion. The call to
+                <strong>flush()</strong> will ensure that the
+                <strong>.then()</strong> on the promise returned from $http will be executed immediately.</p>
+
+              <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
+              <p class="section-question">How do I determine if one method successfully calls another method?
+                <br> How do I determine what arguments were included when I call a method?</p>
+
+              <p>Jasmine uses a spy to determine whether a method has been called and/or what arguments are set into a method call. So, for example:</p>
+
+              <pre>
+                <code lang="js">
+                  var foo, bar = null; beforeEach(function() { // Here we create a simple object foo with a method setBar, which takes one argument. foo = { setBar: function(value) { bar = value; } } }; // Now whenever foo.setBar is called in this spec or in the source
+                  code, // we can perform assertions on it. spyOn(foo, 'setBar'); foo.setBar(123); it("tracks that the spy was called", function() { expect(foo.setBar).toHaveBeenCalled(); }); it("tracks the arguments of its calls", function() { expect(foo.setBar).toHaveBeenCalledWith(123);
+                  });
+                </code>
+              </pre>
+
+
+              <p>A spy only exists within the
+                <strong>describe()</strong> or
+                <strong>it()</strong> function where it has been defined.</p>
+
+              <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
+
+              <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should return (using returnValue()) or what fake function the spy should run instead of the target function (using callFake()). For example:</p>
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.js .controller('ExperimentsCtrl', function (Messages, Experiments) { var experiments = this; experiments.title = 'Experiments Page'; experiments.body = 'This is the about experiments body'; experiments.message = Messages.getMessage();
+                  Experiments.getExperiments() .then(function(result){ experiments.experiments = result.data; }); experiments.updateMessage = function (m) { Messages.setMessage(m); }; })
+                </code>
+              </pre>
+
+              And the spec.
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.spec.js describe('ExperimentsCtrl', function () { // Inject and assign services and create the controller. beforeEach(inject(function ($controller, _Messages_, _Experiments_, $q) { messages = _Messages_; experiments = _Experiments_;
+                  // Here we create a spy just like before, // but now it is spying on a method attached to a service. spyOn(messages, 'setMessage'); // Every time Messages.getMessage is called, // we want the value 'Hello!' to be returned. spyOn(messages,
+                  'getMessage').and.returnValue('Hello!'); // Every time Messages.getExperiments is called, // we execute the function contained within the callFake method. spyOn(experiments, 'getExperiments').and.callFake( function () { // Since we don't
+                  want to deal with an $http call // in the controller, we mock it out using $q. var deferred = $q.defer(); deferred.resolve({data: []}); return deferred.promise; } ); ctrl = $controller('ExperimentsCtrl', { Messages: messages, Experiments:
+                  experiments }); })); // Now we can see if the methods we are spying on actually execute; // also, we can test some expectations on the portions of the controller // that interact with our spies. it('should call Messages.getMessage',
+                  function () { expect(messages.getMessage).toHaveBeenCalled(); expect(ctrl.message).toEqual('Hello!'); }); it('should call updateMessage on message', function () { var message = 'Hello Message'; ctrl.updateMessage(message); expect(messages.setMessage).toHaveBeenCalledWith(message);
+                  }); });
+                </code>
+              </pre>
+
+              <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
+              <p class="section-question">How do I handle async operations in a spec?</p>
+
+              <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will complete before the operation completes. There are ways of handling specific use cases (for example
+                <strong>$httpBackend.flush()</strong> as mentioned earlier), but you can also use the Jasmine
+                <strong>done()</strong> function. For example:</p>
+
+              <pre>
+                <code lang="js">
+                  it('should do something', function(done) { someAsyncOperation .then(function() { done(); }) .catch(function(err) { done(err); }); });
+                </code>
+              </pre>
+
+              <p>In this example, the test will not complete until
+                <strong>done()</strong> is called. If
+                <strong>done()</strong> contains a parameter, Jasmine treats that as an error and fails the test.</p>
+
+              <p>One last note on async operations. You may have noticed in our examples a call to
+                <strong>$rootScope.$digest()</strong>. This will force the digest cycle to run which is needed whenever we are testing anything athat involves watchers (so, anything with templates).</p>
+
+              <h4 class="section-heading" id="debugging">Debugging</h4>
+              <p class="section-question">How do I troubleshoot problems with my specs?</p>
+
+              <p>Spec code is run in the browser just like any other client side code. So, how do you debug your Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with Chrome there should be a Chrome window open on
+                your machine that contains the output of the test. To debug, simply open up the Chrome dev tools and refresh the page.</p>
+
+              <h4 class="section-heading" id="best-practices">Best Practices</h4>
+              <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
+
+              <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
+              <ul>
+                <li>Use
+                  <strong>beforeEach()</strong> to set up the context for your tests.</li>
+                <li>Make sure the string descriptions you put in
+                  <strong>describe()</strong> and
+                  <strong>it()</strong> make sense as output</li>
+                <li>Use
+                  <strong>after()</strong> and
+                  <strong>afterEach()</strong> to cleanup your tests if there is any state that may bleed over.</li>
+                <li>If any one test is over 10 lines of code, you may need to refactor the test</li>
+                <li>If you find yourself repeating the same code for many tests, refactor the common code into a helper function</li>
+              </ul>
+
+              <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
+
+              <p>Pending</p>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div id="toTop" style="display: none;"><a href="#"><span class="glyphicon glyphicon-arrow-up"></span></a></div>
+  <div id="toTop" style="display: none;">
+    <a href="#">
+      <span class="glyphicon glyphicon-arrow-up"></span>
+    </a>
+  </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
     var innerHeight = $(window).innerHeight();
 
-    $(window).scroll(function () {
-        innerHeight = $(window).innerHeight();
-        $('#table-of-contents').css('max-height', innerHeight);
+    $(window).scroll(function() {
+      innerHeight = $(window).innerHeight();
+      $('#table-of-contents').css('max-height', innerHeight);
 
-        if ($(this).scrollTop()) {
-            $('#toTop:hidden').stop(true, true).fadeIn();
-        } else {
-            $('#toTop').stop(true, true).fadeOut();
-        }
+      if ($(this).scrollTop()) {
+        $('#toTop:hidden').stop(true, true).fadeIn();
+      } else {
+        $('#toTop').stop(true, true).fadeOut();
+      }
     });
 
     $('#table-of-contents').css('max-height', innerHeight);
-
-</script>
+  </script>
 
 </body>
+
+</html><!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>AngularJS Unit Testing</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/zenburn.min.css">
+  <link rel="stylesheet" href="core.css">
+  <link rel="stylesheet" href="ui-changes.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body data-spy="scroll" data-target="#table-of-contents">
+  <div class="col-sm-12">
+    <nav id="table-of-contents" class="affix">
+      <ul class="nav">
+        <li><a href="#sample-project">Where can I see the actual tests?</a></li>
+        <li><a href="#unit-testing">How does Karma differ from Protractor?</a></li>
+        <li><a href="#installing-karma">How do I install Karma?</a></li>
+        <li><a href="#configuring-karma">How do does Karma know which files to include?</a></li>
+        <li><a href="#basic-jasmine">How is a basic spec organized?</a></li>
+        <li><a href="#including-module">How do I inject a module in a spec?</a></li>
+        <li><a href="#testing-controller">How do I instantiate a controller in a spec?</a></li>
+        <li><a href="#including-service">How do I inject a service in a spec?</a></li>
+        <li><a href="#testing-template">How do I test if an element is in the DOM?</a></li>
+        <li><a href="#testing-route">How do I test route changes?</a></li>
+        <li><a href="#testing-directive">How do I set up a spec for a directive?</a></li>
+        <li><a href="#mocking">How/Why do I mock a service call in a controller spec?</a></li>
+        <li><a href="#spying-methods">How do I determine if one method successfully calls another method?</a></li>
+        <li><a href="#spying-methods">How do I determine what arguments were included when I call a method?</a></li>
+        <li><a href="#testing-promise">How do I handle async operations in a spec?</a></li>
+        <li><a href="#debugging">How do I troubleshoot problems with my specs?</a></li>
+        <li><a href="#best-practices">How do I know I am formatting my specs in the most efficient manner?</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="main-content">
+          <h1>AngularJS Unit Testing Quick Start</h1>
+          <h4 class="section-heading" id="sample-project">Introduction</h4>
+          <p class="section-question">Why are you doing this?</p>
+          <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy,
+            actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How
+            do I instantiate my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
+          <p>I have since covered a lot of ground over the last couple years and I found that once you understand a few basic rules of engagement that testing in Angular is actually pretty straight forward and formulaic.</p>
+          <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so that developers can get to that first test without losing their mind</p>
+          <p>Please use this material as a bridge to making tests a natural part of your development process. Nothing would make me happier! Enjoy!</p>
+
+          <h4 class="section-heading" id="sample-project">The Sample Project</h4>
+          <p class="section-question">Where can I see the actual tests?</p>
+          <p>The companion repository for this quick start guide can be found here <a href="https://github.com/simpulton/angularjs-testing-quick-start">https://github.com/simpulton/angularjs-testing-quick-start</a></p>
+
+          <h4 class="section-heading" id="unit-testing">Unit Testing vs E2E</h4>
+          <p class="section-question">How does Karma differ from Protractor?</p>
+
+          <p>I like to split my tests up into three different categories:</p>
+
+          <ol>
+            <li>
+              <strong>End­-to-­End Tests</strong> - These are the tests where you want to mimic an actual user that visits your website. Each test contains a series of simulated user events (ex. go to http://mysite.com/home and then click on the button with ID
+              'my­-button') and expected results (ex. after 200ms a new window should appear that says "Thank You").</li>
+            <li>
+              <strong>Integration Tests</strong> ­ These tests will call directly into your code. For example, you can use an integration test to call an Angular service. Typically each test will focus on one function. The test calls the target function with
+              a set of parameters and then checks to make sure the results match expected values.</li>
+            <li>
+              <strong>Unit Tests</strong> ­ These are the same as integration tests except you take extra steps toensure that nothing is executed besides the one function you are testing. For example, when you test a service that uses $http to call a back end
+              API, an integration test would include the API call. A unit test, however, would use a utility we will discuss later called $httpBackend to replace $http so that the code executed by the test is restricted to just the target function.</li>
+          </ol>
+
+          <p>Protractor is the tool you will use for end-to-end tests while Karma handles integration and unit testing.</p>
+
+          <h4 class="section-heading" id="installing-karma">Installing Karma</h4>
+          <p class="section-question">How do I install Karma?</p>
+          <pre>
+            <code class="js">npm install ­g karma</code>
+          </pre>
+
+
+          <h4 class="section-heading" id="configuring-karma">Configuring Karma</h4>
+          <p class="section-question">How do does Karma know which files to include?</p>
+          <pre>
+            <code class="js">karma init karma.conf.js</code>
+          </pre>
+
+          <p>After installing Karma, we need to set up the karma.conf file. The files array in karma.conf contains all the files needed to run a test. This includes:</p>
+
+          <ul>
+            <li>Any angular libraries used by your code</li>
+            <li>All your custom code</li>
+            <li>All your test specs</li>
+          </ul>
+
+          <p>Below is an example of a full karma.conf file.</p>
+
+
+          <pre>
+            <code class="js">
+              // Karma configuration // Generated on Sat Nov 08 2014 19:20:47 GMT-0700 (MST) module.exports = function (config) { config.set({ // base path that will be used to resolve all patterns (eg. files, exclude) basePath: '', // frameworks to use // available
+              frameworks: https://npmjs.org/browse/keyword/karma-adapter frameworks: ['jasmine'], // list of files / patterns to load in the browser files: [ 'src/vendor/angular.min.js', 'src/vendor/angular-mocks.js', 'src/vendor/angular-ui-router.min.js',
+              'src/assets/js/unit-test-helpers.js', 'src/app/**/*.html', 'src/app/**/*.spec.js', 'src/app/**/*.js' ], /*********************************************************/ // Note: this was added AFTER karma init was completed. /*********************************************************/
+              ngHtml2JsPreprocessor: { stripPrefix: 'src/', //stripSufix: '.ext', // setting this option will create only a single module that contains templates // from all the files, so you can load them all with module('foo') moduleName: 'myAppTemplates'
+              }, // list of files to exclude exclude: [], // preprocess matching files before serving them to the browser // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor preprocessors: { 'src/app/**/*.html': ['ng-html2js']
+              }, // test results reporter to use // possible values: 'dots', 'progress' // available reporters: https://npmjs.org/browse/keyword/karma-reporter reporters: ['progress'], // web server port port: 9876, // enable / disable colors in the output
+              (reporters and logs) colors: true, // level of logging // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG logLevel: config.LOG_INFO, // enable / disable watching file and
+              executing tests whenever any file changes autoWatch: true, // start these browsers // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher browsers: ['Chrome'], // Continuous Integration mode // if true, Karma captures
+              browsers, runs the tests and exits singleRun: false }); };
+            </code>
+          </pre>
+
+          <p>Note that most values in the karma.conf file can be overridden at the command line. For example, if you wanted to run Firefox instead of Chrome you could either change the value in karma.conf or keep the value the same and use this command:</p>
+
+          <pre>
+            <code lang="js">karma start ­­browsers Firefox</code>
+          </pre>
+
+          <p>I strongly suggest you take an existing karma.conf file like this one and adapt it to meet your needs. As long as you follow the conventions we outline in this guide, the only things you will likely want to change are:</p>
+
+          <ul>
+            <li>files ­ to include all your custom code, dependencies and test code</li>
+            <li>reporters ­ if you want test coverage you will need to include the 'coverage' reporter</li>
+            <li>autoWatch and singleRun ­ most of the time you will want autoWatch=true and singleRun=false so that Karma will automatically re­run your tests as you make changes. However, if you are running Karma as part of a script like a git hook or continuous
+              integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
+          </ul>
+
+          <h4 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h4>
+          <p class="section-question">How is a basic spec organized?</p>
+
+          <p>
+            <em>File Structure</em>
+          </p>
+
+          <p>In general, you want to have one test file for each and every non­test code file in your app. You should have a common naming scheme so that your build tools and test runners can pick out test files from non­test files. We are using one of the
+            most common test file naming schemes: "{filename}.spec.js". So if you have a code file called "app.js", the file that contains all the tests for app.js would be called "app.spec.js". You will often see all test files in a separate directory
+            from the rest of the code (usually called 'test'), but in the sample code we have put all specs right along side the code they are testing for your convenience.</p>
+
+          <p>
+            <em>Spec Code Structure</em>
+          </p>
+          <p>In general, your spec files should follow this structure:</p>
+
+          <pre>
+            <code class="js">
+              // src/app/app.spec.js // Containing describe block (or "suite"), usually named for an app feature. // In this case the feature is the App itself. describe('Unit: App', function () { // Include Modules beforeEach(module('myApp')); beforeEach(module('myApp.about'));
+              beforeEach(module('myApp.experiments')); beforeEach(module('myApp.home')); beforeEach(module('myApp.models.messages')); beforeEach(module('ui.router')); // Suite for testing an individual piece of our feature. describe('App Abstract Route',
+              function () { // Instantiate global variables (global to all tests in this describe block). var $state, $rootScope, state = 'app'; // Inject dependencies beforeEach(inject(function (_$state_, $templateCache, _$rootScope_) { $state = _$state_;
+              $rootScope = _$rootScope_; $templateCache.put('app/home/home.tmpl.html', ''); })); // It block (or "spec") to test expectations for the // Expectations return true or false. it('verifies state configuration', function () { var config = $state.get(state);
+              expect(config.abstract).toBeTruthy(); expect(config.url).toBeUndefined(); }); }); });
+            </code>
+          </pre>
+
+          <p>Two things to note from this example.</p>
+
+          <p>First, you should make liberal use of before, beforeEach, after and afterEach to set up and tear down the appropriate context for tests. Ideally you only have a couple lines of code within each
+            <strong>it()</strong> function.</p>
+
+          <p>The second thing to note is that the first parameter for the
+            <strong>describe()</strong> and
+            <strong>it()</strong> functions may be used by the test runner when tests are executed. For example, when this spec is run, some test runners may output:</p>
+
+          <pre>
+            <code>Unit: App App Abstract Route verifies state configuration</code>
+          </pre>
+
+          <p>So, make sure the string values are descriptive.</p>
+
+          <h4 class="section-heading" id="including-module">Including a Module</h4>
+          <p class="section-question">How do I inject a module in a spec?</p>
+
+          <p>The first thing your spec should do is define all the Angular modules that are needed for the tests in that spec. This is done using the
+            <strong>module()</strong> function that comes from the
+            <strong>angular-mocks</strong> library. For example:
+
+            <pre>
+              <code lang="js">beforeEach(module('myApp'));</code>
+            </pre>
+
+            <p>This code will enable the spec to test the code from the
+              <strong>myApp</strong> module. It is best practice to use
+              <strong>beforeEach()</strong> instead of just
+              <strong>before()</strong> so that each test is essentially running from a blank slate. If you don't do this, the state from a previous test may bleed into another test and affect the results.</p>
+
+            <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
+            <p class="section-question">How do I instantiate a controller in a spec?</p>
+
+            <p>Here is our controller that we want to test:</p>
+
+            <pre>
+              <code lang="js">
+                // src/app/about/about.js .controller('AboutCtrl', function (Messages) { var about = this; about.title = 'About Page'; about.body = 'This is the about page body'; about.message = Messages.getMessage(); about.updateMessage = function (m) { Messages.setMessage(m);
+                }; })
+              </code>
+            </pre>
+
+            <p>The
+              <strong>angular­-mocks</strong> library provides a service called
+              <strong>$controller</strong> that we can use to help us test our controllers. In the
+              <strong>beforeEach()</strong> below, we are injecting
+              <strong>$controller</strong> along with any other dependencies we need to instantiate our controller.</p>
+
+            <pre>
+              <code lang="js">
+                // src/app/about/about.spec.js describe('Unit: About', function () { // Define global references for injections. var ctrl, messages; beforeEach(module('myApp.about')); beforeEach(module('myApp.models.messages')); beforeEach(module('ui.router')); beforeEach(inject(function
+                ($controller, _Messages_) { messages = _Messages_; spyOn(messages, 'setMessage'); spyOn(messages, 'getMessage').and.returnValue('Hello!'); // Instantiate the controller with an object of the dependencies ctrl = $controller('AboutCtrl',
+                { Messages: messages }); })); describe('AboutCtrl', function () { // Test some basic expectations about the controller it('should have title defined', function () { expect(ctrl.title).toBeDefined(); }); it('should have body defined', function
+                () { expect(ctrl.body).toBeDefined(); }); it('should call Messages.getMessage', function () { expect(messages.getMessage).toHaveBeenCalled(); expect(ctrl.message).toEqual('Hello!'); }); it('should call updateMessage on message', function
+                () { var message = 'Hello Message'; ctrl.updateMessage(message); expect(messages.setMessage).toHaveBeenCalledWith(message); }); }); });
+              </code>
+            </pre>
+
+            <p>Note that we are using the underscore syntax with
+              <strong>_Messages_</strong> to get a global reference to the
+              <strong>Messages</strong> service. The underscores are ignored by the injector when the reference name is resolved.</p>
+
+            <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a></p>
+
+            <h4 class="section-heading" id="including-service">Including a Service</h4>
+            <p class="section-question">How do I inject a service in a spec?</p>
+
+            <p>Testing an Angular service is a piece of cake. You can use the
+              <strong>inject()</strong> function from angular-mocks to get a reference to either internal Angular core objects or any of your custom objects in the modules that are defined at the top of the spec. For example:</p>
+
+            <pre>
+              <code lang="js">beforeEach(inject(function(someService, someFactory) { localSomeService = someService; localSomeFactory = someFactory; }));
+
+              </code>
+            </pre>
+
+            <p>As a best practice, we suggest injecting objects in
+              <strong>beforeEach()</strong> and saving the object to a local variable. Then in the test we just reference that local variable.</p>
+
+            <h4 class="section-heading" id="testing-template">Testing a Template</h4>
+            <p class="section-question">How do I test if an element is in the DOM?</p>
+
+            <p>The most tricky thing to test with Angular is code within templates. That is why you should try to reduce the amount of code in your templates as much as possible. Even if you are really good about this, though, you will always have some template
+              code that you want to test.</p>
+
+            <p>You can split template testing into two categories. The first category includes templates that don't have any controllers, includes or custom directives. Essentially you are just testing logic that uses basic Angular expressions and core Angular
+              directives. This use case is relatively easy to test. Take the following example:</p>
+
+
+            <pre>
+              <code lang="html">&#60;!DOCTYPE html&#62; &#60;html&#62; &#60;head&#62; &#60;title&#62;&#60;/title&#62; &#60;/head&#62; &#60;body&#62; &#60;h1&#62;{{home.title}}&#60;/h1&#62; &#60;p&#62;{{home.body}}&#60;/p&#62; &#60;hr&#62; &#60;div&#62; &#60;h2 class="text-error"&#62;Home:
+                {{home.message}}&#60;/h2&#62; &#60;form class="form-inline"&#62; &#60;input class="form-control" placeholder="Message" type="text"&#62; &#60;button class="btn btn-default" type="submit"&#62;Update Message&#60;/button&#62; &#60;/form&#62;
+                &#60;/div&#62; &#60;/body&#62; &#60;/html&#62;
+              </code>
+            </pre>
+
+
+
+            <p>We want to have access to this HTML file in our tests, but it is generally a bad idea to make an http call within your tests if you can avoid it. Fortunately, there is a nice feature in Karma that allows us to automatically package all of
+              our HTML template files into an Angular module that we can access easily in our tests. Just add the following to your
+              <strong>karma.conf.js</strong> file:</p>
+
+            <pre>
+              <code lang="js">
+                // karma.conf.js ngHtml2JsPreprocessor: { stripPrefix: 'src/', // stripSufix: '.ext', // setting this option will create only a single module that contains templates // from all the files, so you can load them all with module('foo') moduleName: 'myAppTemplates'
+                }
+              </code>
+            </pre>
+
+            <p>This will automatically package any file ending in .html within your src/ folder into an Angular module called myAppTemplates. Each template is accessible by using the
+              <strong>$templateCache</strong> service. You can can test this template simply by injecting the
+              <strong>$compile</strong> service with some test data and then checking the resulting HTML:</p>
+
+            <pre>
+              <code lang="js">
+                describe('UNIT test myTemplates', function() { beforeEach(module('myAppTemplates')); describe('home template', function() { var homeTemplate, compile; beforeEach(inject($templateCache, $compile) { homeTemplate = $templateCache.get('app / home / home.tmpl.html');
+                compile = $compile; }); it('should have an h1 with my title', function() { var testScope = { home: { title: 'blah' } }); var elem = compile(homeTemplate)(testScope); expect(element.find('h1').text()).toBe('blah'); }); }); }); });
+              </code>
+            </pre>
+
+            <p>The second category of template testing is unfortunately more complex. We need to deal with dependencies within the template or surrounding the template such as a controller, the UI router, directives, etc. Let's look at one example of a more
+              complex use case that includes a UI Router state and a controller:</p>
+
+            <pre>
+              <code lang="js">
+                // app/home/home.js .config(function ($stateProvider) { $stateProvider .state('about', { url: '/about', templateUrl: 'app/about/about.tmpl.html', controller: 'AboutCtrl as about' }) ; }) .controller('AboutCtrl', function (Messages) { var about = this;
+                about.title = 'About Page'; about.body = 'This is the about page body'; about.message = Messages.getMessage(); about.updateMessage = function (m) { Messages.setMessage(m); }; })
+              </code>
+            </pre>
+
+            <p>In order to test the template and associated controller code, we need to instantiate the controller and surrounding context. To that end, we have created a helper function called
+              <strong>compileRouteTemplateWithController</strong> that does everything we need.</p>
+
+            <pre>
+              <code lang="js">
+                function compileRouteTemplateWithController($injector, state) { var $rootScope = $injector.get('$rootScope'); var $templateCache = $injector.get('$templateCache'); var $compile = $injector.get('$compile'); var $state = $injector.get('$state'); var $controller
+                = $injector.get('$controller'); var scope = $rootScope.$new(); var stateDetails = $state.get(state); var html = $templateCache.get(stateDetails.templateUrl); var ctrl = scope.home = $controller('HomeCtrl'); $rootScope.$digest(); var compileFn
+                = $compile(angular.element('&#60;div&#62;&#60;/div&#62;').html(html)); return { controller: ctrl, scope: scope, render: function () { var element = compileFn(scope); $rootScope.$digest(); return element; } }; }
+              </code>
+            </pre>
+
+            <p>We are using this helper function to get all the dependencies we need to run our tests. This includes creating scope, a controller and a render function. Feel free to use this and adapt it to your needs. Also, as an aside, whenever you see
+              a lot of repetitive code within your tests, make sure you create your own helper functions.</p>
+
+            <p>OK, now we have everything in place to test our template.</p>
+
+            <pre>
+              <code lang="js">
+                describe('home page', function () { // Define global references for injections. var element, render, ctrl, scope; beforeEach(inject(function ($injector) { // Call the helper function that "creates" a page. // This just creates references to the attributes
+                // on the returned object for use in this suite. var routeDetails = compileRouteTemplateWithController($injector, 'home'); ctrl = routeDetails.controller; scope = routeDetails.scope; render = function () { element = routeDetails.render();
+                }; })); // Test your expectations. You can use ordinary jQuery methods it('should render the page title', function () { scope.home.title = 'Hello'; render(); expect(element.find('h1').text()).toBe('Hello'); }); it('should have body defined',
+                function () { scope.home.body = 'body...'; render(); expect(element.find('p').text()).toBe('body...'); }); it('should call Messages.getMessage', function () { render(); expect(Messages.getMessage).toHaveBeenCalled(); ctrl.updateMessage('yo!');
+                expect(Messages.setMessage).toHaveBeenCalled(); }); it('should call Messages.setMessage when submit is clicked', function () { render(); element.find('input').val('Lukas'); element.find('input').triggerHandler('input'); scope.$digest();
+                element.find('button').triggerHandler('click'); scope.$digest(); expect(Messages.getMessage).toHaveBeenCalled(); expect(scope.home.message).toEqual('Lukas'); }); it('should call updateMessage on message', function () { var message = 'Hello
+                Message'; ctrl.updateMessage(message); expect(Messages.setMessage).toHaveBeenCalledWith(message); }); });
+              </code>
+            </pre>
+
+            <p>The key part of this test was the use of the helper function to instantiate the template and all required dependencies:</p>
+
+            <pre>
+              <code lang="js">
+                var routeDetails = compileRouteTemplateWithController($injector, 'home'); ctrl = routeDetails.controller; scope = routeDetails.scope; render = function () { element = routeDetails.render(); };
+              </code>
+            </pre>
+
+
+            <h4 class="section-heading" id="testing-route">Testing a Route</h4>
+            <p class="section-question">How do I test route changes?</p>
+
+            <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly during the config phase. For example, given the following state configuration:</p>
+
+            <pre>
+              <code lang="js">
+                // app/about/about.js .config(function ($stateProvider) { $stateProvider .state('about', { url: '/about', templateUrl: 'app/about/about.tmpl.html', controller: 'AboutCtrl as about' }) ; })
+              </code>
+            </pre>
+
+            <p>Our basic strategy for testing is to use the
+              <strong>$state.go()</strong> and
+              <strong>$state.href()</strong> methods to modify the current state and then check to make sure the route is changed appropriately.</p>
+
+            <pre>
+              <code lang="js">
+                // app/about/about.spec.js describe('About Route', function () { // Define global references for injections var $state, $rootScope, state = 'about'; // Inject and assign the $state and $rootScope services. // Put the template in template cache. beforeEach(inject(function
+                (_$state_, $templateCache, _$rootScope_) { $state = _$state_; $rootScope = _$rootScope_; $templateCache.put('app/about/about.tmpl.html', ''); })); // Test whether the url is correct it('should respond to URL', function() { expect($state.href(state)).toEqual('/about');
+                }); // Test whether our state activates correctly it('should activate the state', function() { $state.go(state); $rootScope.$digest(); expect($state.current.name).toBe(state); }); });
+              </code>
+            </pre>
+
+            <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
+            <p class="section-question">How do I set up a spec for a directive?</p>
+
+            <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key is to pass in a HTML snippet to
+              <strong>$compile()</strong> that refers to the target directive. For example, if you had an element directive called 'experiment', you would simply call
+              <strong>$compile("&#60;experiment&#62;&#60;/experiment&#62;")</strong>. You can see the full example here:</p>
+
+            <pre>
+              <code lang="js">
+                // app/experiments/experiments.js .directive('experiment', function(){ var linker = function (scope, element, attrs) { element.on('click', function(){ scope.doExperiment(); }) }; var controller = function($scope){ $scope.doExperiment = function() { $scope.$apply(function(){
+                $scope.experiment.completed++; }); }; }; return { scope: true, restrict: 'E', template: '&#60;div class="experiment"&#62;' + '&#60;h3&#62;{{experiment.name}}&#60;/h3&#62;' + '&#60;p&#62;{{experiment.description}}&#60;/p&#62;' + '&#60;p&#62;&#60;strong&#62;{{experiment.completed}}&#60;/strong&#62;&#60;/p&#62;'
+                + '&#60;/div&#62;', link: linker, controller: controller } })
+              </code>
+            </pre>
+
+            And the spec.
+
+            <pre>
+              <code lang="js">
+                // app/experiments/experiments.spec.js describe('Experiments Directive', function () { // Define global references for injections var element, experiment; beforeEach(inject(function ($rootScope, $compile) { // Mock out an experiment $rootScope.experiment
+                = { "name": "Experiment 1", "description": "This is an experiment", "completed": 0 }; // Create an html element with the directive element = angular.element('&#60;experiment&#62;&#60;/experiement&#62;'); // Compile the element and $rootScope,
+                // which essentially instantiates the directive as it would be on a web page. $compile(element)($rootScope); })); it('should increment experiment completed count', function () { // Get the directive's scope var localScope = element.scope();
+                // Test some expectations about the directive. expect(localScope.experiment.completed).toBe(0); localScope.doExperiment(); expect(localScope.experiment.completed).toBe(1); }); })
+              </code>
+            </pre>
+
+            <p>Note: depending on what your directive does, you may need to modify the HTML passed into
+              <strong>$compile</strong>. For example, if the directive expects other attributes on the element or if you are testing a directive with transclusion (in which case you will want to put different snippets of HTML as children to the element that has
+              the directive).</p>
+
+            <h4 class="section-heading" id="mocking">Mocking</h4>
+            <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
+
+            <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma. When you are writing a unit test, your goal is to test just one thing and either eliminate or mock out all other dependencies. In general,
+              you can mock any object through the use of the
+              <strong>$provide</strong> service. You use this service when you define the module you are using in your spec. For example:
+
+              <pre>
+                <code lang="js">
+                  beforeEach(module("app", function($provide) { $provide.value("SimpleService", { someFn: function() {} }); }));
+                </code>
+              </pre>
+
+              <p>In this case, we are overriding the SimpleService object. Once we do this, any code that injects SimpleService will get our mock object instead of the actual SimpleService.</p>
+
+              <p>There is one special case with mocking where Angular helps you out. Whenever you use
+                <strong>$http</strong> to make a remote call, Angular has another service behind the scenes called
+                <strong>$httpBackend</strong> that actually does all the hard work. The angular­mocks library has its own version of
+                <strong>$httpBackend</strong> with a number of goodies to help us mock out calls to the back end. For example look at this code which makes an
+                <strong>$http</strong> call:</p>
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.js .service('Experiments', function($http) { var service = this; service.getExperiments = function() { return $http.get('data/experiments.json'); }; })
+                </code>
+              </pre>
+
+              <p>If we call
+                <strong>getExperiments()</strong> in our test, it will make an actual http request to data/experiments.json. We can intercept that call with
+                <strong>$httpBackend</strong>, however, and define what should be returned instead of making a remote call.</p>
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.spec.js describe('Experiments Model', function () { // After every spec, do the following: afterEach(inject(function ($httpBackend) { // Make sure we have flushed all of our requests. $httpBackend.verifyNoOutstandingExpectation();
+                  $httpBackend.verifyNoOutstandingRequest(); })); it('Should get experiments', inject(function (Experiments, $httpBackend, $rootScope) { var mockResponse = []; // Every time we hit the specified url, // respond with mockResponse( in this
+                  case an empty array). $httpBackend.when('GET', 'data/experiments.json').respond(mockResponse); // The promise reference now holds the $http call returned var promise = Experiments.getExperiments(); // Flush the backend $httpBackend.flush();
+                  // Use .then() like you would normally. promise.then(function (result) { expect(result.data).toEqual(mockResponse); }); // Manually trigger a $digest cycle $rootScope.$digest(); })); });
+                </code>
+              </pre>
+
+              <p>Note that
+                <strong>$httpBackend.flush()</strong> is needed because normally $http is asynchronous, but we want to execute our test in a synchronous fashion. The call to
+                <strong>flush()</strong> will ensure that the
+                <strong>.then()</strong> on the promise returned from $http will be executed immediately.</p>
+
+              <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
+              <p class="section-question">How do I determine if one method successfully calls another method?
+                <br> How do I determine what arguments were included when I call a method?</p>
+
+              <p>Jasmine uses a spy to determine whether a method has been called and/or what arguments are set into a method call. So, for example:</p>
+
+              <pre>
+                <code lang="js">
+                  var foo, bar = null; beforeEach(function() { // Here we create a simple object foo with a method setBar, which takes one argument. foo = { setBar: function(value) { bar = value; } } }; // Now whenever foo.setBar is called in this spec or in the source
+                  code, // we can perform assertions on it. spyOn(foo, 'setBar'); foo.setBar(123); it("tracks that the spy was called", function() { expect(foo.setBar).toHaveBeenCalled(); }); it("tracks the arguments of its calls", function() { expect(foo.setBar).toHaveBeenCalledWith(123);
+                  });
+                </code>
+              </pre>
+
+
+              <p>A spy only exists within the
+                <strong>describe()</strong> or
+                <strong>it()</strong> function where it has been defined.</p>
+
+              <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
+
+              <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should return (using returnValue()) or what fake function the spy should run instead of the target function (using callFake()). For example:</p>
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.js .controller('ExperimentsCtrl', function (Messages, Experiments) { var experiments = this; experiments.title = 'Experiments Page'; experiments.body = 'This is the about experiments body'; experiments.message = Messages.getMessage();
+                  Experiments.getExperiments() .then(function(result){ experiments.experiments = result.data; }); experiments.updateMessage = function (m) { Messages.setMessage(m); }; })
+                </code>
+              </pre>
+
+              And the spec.
+
+              <pre>
+                <code lang="js">
+                  // app/experiments/experiments.spec.js describe('ExperimentsCtrl', function () { // Inject and assign services and create the controller. beforeEach(inject(function ($controller, _Messages_, _Experiments_, $q) { messages = _Messages_; experiments = _Experiments_;
+                  // Here we create a spy just like before, // but now it is spying on a method attached to a service. spyOn(messages, 'setMessage'); // Every time Messages.getMessage is called, // we want the value 'Hello!' to be returned. spyOn(messages,
+                  'getMessage').and.returnValue('Hello!'); // Every time Messages.getExperiments is called, // we execute the function contained within the callFake method. spyOn(experiments, 'getExperiments').and.callFake( function () { // Since we don't
+                  want to deal with an $http call // in the controller, we mock it out using $q. var deferred = $q.defer(); deferred.resolve({data: []}); return deferred.promise; } ); ctrl = $controller('ExperimentsCtrl', { Messages: messages, Experiments:
+                  experiments }); })); // Now we can see if the methods we are spying on actually execute; // also, we can test some expectations on the portions of the controller // that interact with our spies. it('should call Messages.getMessage',
+                  function () { expect(messages.getMessage).toHaveBeenCalled(); expect(ctrl.message).toEqual('Hello!'); }); it('should call updateMessage on message', function () { var message = 'Hello Message'; ctrl.updateMessage(message); expect(messages.setMessage).toHaveBeenCalledWith(message);
+                  }); });
+                </code>
+              </pre>
+
+              <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
+              <p class="section-question">How do I handle async operations in a spec?</p>
+
+              <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will complete before the operation completes. There are ways of handling specific use cases (for example
+                <strong>$httpBackend.flush()</strong> as mentioned earlier), but you can also use the Jasmine
+                <strong>done()</strong> function. For example:</p>
+
+              <pre>
+                <code lang="js">
+                  it('should do something', function(done) { someAsyncOperation .then(function() { done(); }) .catch(function(err) { done(err); }); });
+                </code>
+              </pre>
+
+              <p>In this example, the test will not complete until
+                <strong>done()</strong> is called. If
+                <strong>done()</strong> contains a parameter, Jasmine treats that as an error and fails the test.</p>
+
+              <p>One last note on async operations. You may have noticed in our examples a call to
+                <strong>$rootScope.$digest()</strong>. This will force the digest cycle to run which is needed whenever we are testing anything athat involves watchers (so, anything with templates).</p>
+
+              <h4 class="section-heading" id="debugging">Debugging</h4>
+              <p class="section-question">How do I troubleshoot problems with my specs?</p>
+
+              <p>Spec code is run in the browser just like any other client side code. So, how do you debug your Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with Chrome there should be a Chrome window open on
+                your machine that contains the output of the test. To debug, simply open up the Chrome dev tools and refresh the page.</p>
+
+              <h4 class="section-heading" id="best-practices">Best Practices</h4>
+              <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
+
+              <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
+              <ul>
+                <li>Use
+                  <strong>beforeEach()</strong> to set up the context for your tests.</li>
+                <li>Make sure the string descriptions you put in
+                  <strong>describe()</strong> and
+                  <strong>it()</strong> make sense as output</li>
+                <li>Use
+                  <strong>after()</strong> and
+                  <strong>afterEach()</strong> to cleanup your tests if there is any state that may bleed over.</li>
+                <li>If any one test is over 10 lines of code, you may need to refactor the test</li>
+                <li>If you find yourself repeating the same code for many tests, refactor the common code into a helper function</li>
+              </ul>
+
+              <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
+
+              <p>Pending</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toTop" style="display: none;">
+    <a href="#">
+      <span class="glyphicon glyphicon-arrow-up"></span>
+    </a>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  <script>
+    var innerHeight = $(window).innerHeight();
+
+    $(window).scroll(function() {
+      innerHeight = $(window).innerHeight();
+      $('#table-of-contents').css('max-height', innerHeight);
+
+      if ($(this).scrollTop()) {
+        $('#toTop:hidden').stop(true, true).fadeIn();
+      } else {
+        $('#toTop').stop(true, true).fadeOut();
+      }
+    });
+
+    $('#table-of-contents').css('max-height', innerHeight);
+  </script>
+
+</body>
+
 </html>
