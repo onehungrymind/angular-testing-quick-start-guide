@@ -1,9 +1,10 @@
 /* line 14, sass/ui-changes.scss */
 html, body {
   height: 100%;
+  min-height: 100%;
 }
 
-/* line 17, sass/ui-changes.scss */
+/* line 18, sass/ui-changes.scss */
 body {
   font-family: 'Lato', sans-serif;
   background: #fff;
@@ -13,53 +14,53 @@ body {
   letter-spacing: 0.05rem;
 }
 
-/* line 29, sass/ui-changes.scss */
+/* line 30, sass/ui-changes.scss */
 .no-padding-h {
   padding-left: 0px;
   padding-right: 0px;
 }
 
-/* line 30, sass/ui-changes.scss */
+/* line 31, sass/ui-changes.scss */
 .no-padding-v {
   padding-top: 0px;
   padding-bottom: 0px;
 }
 
-/* line 33, sass/ui-changes.scss */
+/* line 34, sass/ui-changes.scss */
 h1, h2, h3, h4, h5 {
   color: #26557f;
 }
 
-/* line 36, sass/ui-changes.scss */
+/* line 37, sass/ui-changes.scss */
 .section-question {
   color: #00427f;
   padding-bottom: 20px;
   border-bottom: 1px dotted #595959;
 }
 
-/* line 43, sass/ui-changes.scss */
+/* line 44, sass/ui-changes.scss */
 #table-of-contents {
   height: 100vh;
   max-height: 100vh !important;
   width: 35rem;
   overflow: scroll;
 }
-/* line 48, sass/ui-changes.scss */
+/* line 49, sass/ui-changes.scss */
 #table-of-contents ul {
   margin-top: 0px;
   margin-bottom: 0px;
   border: none;
 }
-/* line 54, sass/ui-changes.scss */
+/* line 55, sass/ui-changes.scss */
 #table-of-contents li:first-of-type {
   padding: 0px 0px 5px 0px;
 }
-/* line 56, sass/ui-changes.scss */
+/* line 57, sass/ui-changes.scss */
 #table-of-contents li.active a {
   background: #4caaff;
   color: #ffffff;
 }
-/* line 59, sass/ui-changes.scss */
+/* line 60, sass/ui-changes.scss */
 #table-of-contents li a:hover {
   text-decoration: underline;
 }
