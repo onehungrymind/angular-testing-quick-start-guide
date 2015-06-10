@@ -1,10 +1,76 @@
     body {
-      font-family: 'Lato', sans-serif;
+      /*font-family: 'Lato', sans-serif;
       background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Light-aluminum-Grey-Seamless-Pattern-For-Website-Background.jpg');
       position: relative;
       color: #777;
       font-size: 1.5rem;
-      letter-spacing: 0.05rem;
+      letter-spacing: 0.05rem;*/
+    }
+    .section-heading {
+      margin-bottom: 0;
+      margin-top: 50px;
+    }
+    .section-heading.bottom-margin {
+      margin-bottom: 30px;
+    }
+    .section-question {
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    nav {
+      width: 30rem;
+      overflow: auto;
+    }
+    #table-of-contents ul {
+      margin-top: 30px;
+      list-style-type: none;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: whitesmoke;
+      margin-bottom: 30px;
+    }
+    #table-of-contents li {
+      padding: 5px 0;
+    }
+    #table-of-contents li a {
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear;
+      -ms-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+    #table-of-contents li a:hover, #table-of-contents li.active a {
+      background: #0085ff;
+      color: white;
+    }
+    #toTop {
+      padding: 10px;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      background: #3f3f3f;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      right: 20px;
+      display: none;
+    }
+    #toTop a, #toTop a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+    pre {
+      margin: 30px 0;
+    }
+    .container-fluid {
+      margin-left: 40rem;
+    }
+    h1, h4 {
+      color: #0085ff;
+      font-weight: bold;
+    }
+    .section-question {
+      color: #0085ff;
+      opacity: 0.7;
     }
     .section-heading {
       margin-bottom: 0;
@@ -72,12 +138,78 @@
       color: #0085ff;
       opacity: 0.7;
     }    body {
-      font-family: 'Lato', sans-serif;
+      /*font-family: 'Lato', sans-serif;
       background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Light-aluminum-Grey-Seamless-Pattern-For-Website-Background.jpg');
       position: relative;
       color: #777;
       font-size: 1.5rem;
-      letter-spacing: 0.05rem;
+      letter-spacing: 0.05rem;*/
+    }
+    .section-heading {
+      margin-bottom: 0;
+      margin-top: 50px;
+    }
+    .section-heading.bottom-margin {
+      margin-bottom: 30px;
+    }
+    .section-question {
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    nav {
+      width: 30rem;
+      overflow: auto;
+    }
+    #table-of-contents ul {
+      margin-top: 30px;
+      list-style-type: none;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      background-color: whitesmoke;
+      margin-bottom: 30px;
+    }
+    #table-of-contents li {
+      padding: 5px 0;
+    }
+    #table-of-contents li a {
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear;
+      -ms-transition: all 0.2s linear;
+      -o-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+    #table-of-contents li a:hover, #table-of-contents li.active a {
+      background: #0085ff;
+      color: white;
+    }
+    #toTop {
+      padding: 10px;
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+      background: #3f3f3f;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      right: 20px;
+      display: none;
+    }
+    #toTop a, #toTop a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+    pre {
+      margin: 30px 0;
+    }
+    .container-fluid {
+      margin-left: 40rem;
+    }
+    h1, h4 {
+      color: #0085ff;
+      font-weight: bold;
+    }
+    .section-question {
+      color: #0085ff;
+      opacity: 0.7;
     }
     .section-heading {
       margin-bottom: 0;

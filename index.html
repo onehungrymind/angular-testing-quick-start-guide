@@ -27,7 +27,7 @@
 </head>
 
 <body data-spy="scroll" data-target="#table-of-contents">
-  <div class="col-sm-12">
+  <div class="col-sm-12 no-padding-h">
     <nav id="table-of-contents" class="affix">
       <ul class="nav">
         <li><a href="#sample-project">Where can I see the actual tests?</a></li>
@@ -56,7 +56,7 @@
 
         <div class="main-content">
           <h1>AngularJS Unit Testing Quick Start</h1>
-          <h4 class="section-heading" id="sample-project">Introduction</h4>
+          <h3 class="section-heading" id="sample-project">Introduction</h3>
           <p class="section-question">Why are you doing this?</p>
           <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy,
             actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How
@@ -65,11 +65,11 @@
           <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so that developers can get to that first test without losing their mind</p>
           <p>Please use this material as a bridge to making tests a natural part of your development process. Nothing would make me happier! Enjoy!</p>
 
-          <h4 class="section-heading" id="sample-project">The Sample Project</h4>
+          <h3 class="section-heading" id="sample-project">The Sample Project</h3>
           <p class="section-question">Where can I see the actual tests?</p>
           <p>The companion repository for this quick start guide can be found here <a href="https://github.com/simpulton/angularjs-testing-quick-start">https://github.com/simpulton/angularjs-testing-quick-start</a></p>
 
-          <h4 class="section-heading" id="unit-testing">Unit Testing vs E2E</h4>
+          <h3 class="section-heading" id="unit-testing">Unit Testing vs E2E</h3>
           <p class="section-question">How does Karma differ from Protractor?</p>
 
           <p>I like to split my tests up into three different categories:</p>
@@ -88,14 +88,14 @@
 
           <p>Protractor is the tool you will use for end-to-end tests while Karma handles integration and unit testing.</p>
 
-          <h4 class="section-heading" id="installing-karma">Installing Karma</h4>
+          <h3 class="section-heading" id="installing-karma">Installing Karma</h3>
           <p class="section-question">How do I install Karma?</p>
           <pre>
             <code class="js">npm install ­g karma</code>
           </pre>
 
 
-          <h4 class="section-heading" id="configuring-karma">Configuring Karma</h4>
+          <h3 class="section-heading" id="configuring-karma">Configuring Karma</h3>
           <p class="section-question">How do does Karma know which files to include?</p>
           <pre>
             <code class="js">karma init karma.conf.js</code>
@@ -141,7 +141,7 @@
               integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
           </ul>
 
-          <h4 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h4>
+          <h3 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h3>
           <p class="section-question">How is a basic spec organized?</p>
 
           <p>
@@ -182,7 +182,7 @@
 
           <p>So, make sure the string values are descriptive.</p>
 
-          <h4 class="section-heading" id="including-module">Including a Module</h4>
+          <h3 class="section-heading" id="including-module">Including a Module</h3>
           <p class="section-question">How do I inject a module in a spec?</p>
 
           <p>The first thing your spec should do is define all the Angular modules that are needed for the tests in that spec. This is done using the
@@ -198,7 +198,7 @@
               <strong>beforeEach()</strong> instead of just
               <strong>before()</strong> so that each test is essentially running from a blank slate. If you don't do this, the state from a previous test may bleed into another test and affect the results.</p>
 
-            <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
+            <h3 class="section-heading" id="testing-controller">Testing a Controller</h3>
             <p class="section-question">How do I instantiate a controller in a spec?</p>
 
             <p>Here is our controller that we want to test:</p>
@@ -232,7 +232,7 @@
 
             <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a></p>
 
-            <h4 class="section-heading" id="including-service">Including a Service</h4>
+            <h3 class="section-heading" id="including-service">Including a Service</h3>
             <p class="section-question">How do I inject a service in a spec?</p>
 
             <p>Testing an Angular service is a piece of cake. You can use the
@@ -247,7 +247,7 @@
             <p>As a best practice, we suggest injecting objects in
               <strong>beforeEach()</strong> and saving the object to a local variable. Then in the test we just reference that local variable.</p>
 
-            <h4 class="section-heading" id="testing-template">Testing a Template</h4>
+            <h3 class="section-heading" id="testing-template">Testing a Template</h3>
             <p class="section-question">How do I test if an element is in the DOM?</p>
 
             <p>The most tricky thing to test with Angular is code within templates. That is why you should try to reduce the amount of code in your templates as much as possible. Even if you are really good about this, though, you will always have some template
@@ -335,7 +335,7 @@
             </pre>
 
 
-            <h4 class="section-heading" id="testing-route">Testing a Route</h4>
+            <h3 class="section-heading" id="testing-route">Testing a Route</h3>
             <p class="section-question">How do I test route changes?</p>
 
             <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly during the config phase. For example, given the following state configuration:</p>
@@ -358,7 +358,7 @@
               </code>
             </pre>
 
-            <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
+            <h3 class="section-heading" id="testing-directive">Testing a Directive</h3>
             <p class="section-question">How do I set up a spec for a directive?</p>
 
             <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key is to pass in a HTML snippet to
@@ -388,7 +388,7 @@
               <strong>$compile</strong>. For example, if the directive expects other attributes on the element or if you are testing a directive with transclusion (in which case you will want to put different snippets of HTML as children to the element that has
               the directive).</p>
 
-            <h4 class="section-heading" id="mocking">Mocking</h4>
+            <h3 class="section-heading" id="mocking">Mocking</h3>
             <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
 
             <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma. When you are writing a unit test, your goal is to test just one thing and either eliminate or mock out all other dependencies. In general,
@@ -433,7 +433,7 @@
                 <strong>flush()</strong> will ensure that the
                 <strong>.then()</strong> on the promise returned from $http will be executed immediately.</p>
 
-              <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
+              <h3 class="section-heading" id="spying-methods">Spying on Methods</h3>
               <p class="section-question">How do I determine if one method successfully calls another method?
                 <br> How do I determine what arguments were included when I call a method?</p>
 
@@ -452,7 +452,7 @@
                 <strong>describe()</strong> or
                 <strong>it()</strong> function where it has been defined.</p>
 
-              <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
+              <h3 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h3>
 
               <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should return (using returnValue()) or what fake function the spy should run instead of the target function (using callFake()). For example:</p>
 
@@ -477,7 +477,7 @@
                 </code>
               </pre>
 
-              <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
+              <h3 class="section-heading" id="testing-promise">Testing a Promise</h3>
               <p class="section-question">How do I handle async operations in a spec?</p>
 
               <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will complete before the operation completes. There are ways of handling specific use cases (for example
@@ -497,13 +497,13 @@
               <p>One last note on async operations. You may have noticed in our examples a call to
                 <strong>$rootScope.$digest()</strong>. This will force the digest cycle to run which is needed whenever we are testing anything athat involves watchers (so, anything with templates).</p>
 
-              <h4 class="section-heading" id="debugging">Debugging</h4>
+              <h3 class="section-heading" id="debugging">Debugging</h3>
               <p class="section-question">How do I troubleshoot problems with my specs?</p>
 
               <p>Spec code is run in the browser just like any other client side code. So, how do you debug your Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with Chrome there should be a Chrome window open on
                 your machine that contains the output of the test. To debug, simply open up the Chrome dev tools and refresh the page.</p>
 
-              <h4 class="section-heading" id="best-practices">Best Practices</h4>
+              <h3 class="section-heading" id="best-practices">Best Practices</h3>
               <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
 
               <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
@@ -520,7 +520,7 @@
                 <li>If you find yourself repeating the same code for many tests, refactor the common code into a helper function</li>
               </ul>
 
-              <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
+              <h3 class="section-heading bottom-margin" id="resources">Resources</h3>
 
               <p>Pending</p>
         </div>
@@ -589,8 +589,8 @@
     <![endif]-->
 </head>
 
-<body data-spy="scroll" data-target="#table-of-contents">
-  <div class="col-sm-12">
+<body data-spy="scroll" data-target="#table-of-contents" id="top">
+  <div class="col-sm-12 no-padding-h">
     <nav id="table-of-contents" class="affix">
       <ul class="nav">
         <li><a href="#sample-project">Where can I see the actual tests?</a></li>
@@ -619,7 +619,7 @@
 
         <div class="main-content">
           <h1>AngularJS Unit Testing Quick Start</h1>
-          <h4 class="section-heading" id="sample-project">Introduction</h4>
+          <h3 class="section-heading" id="sample-project">Introduction</h3>
           <p class="section-question">Why are you doing this?</p>
           <p>Angular was written from the ground up to be testable and yet there are scores of Angular developers who are not writing enough (if any) tests for their application. Why is this? I believe that it is because that while testing Angular is easy,
             actually getting to that first step is hard. I remember the feeling of despair I felt the first time I was tasked with writing tests for a project I was on. Where do I start? How do I get this Karma thing to actually run? Find my files? How
@@ -628,11 +628,11 @@
           <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so that developers can get to that first test without losing their mind</p>
           <p>Please use this material as a bridge to making tests a natural part of your development process. Nothing would make me happier! Enjoy!</p>
 
-          <h4 class="section-heading" id="sample-project">The Sample Project</h4>
+          <h3 class="section-heading" id="sample-project">The Sample Project</h3>
           <p class="section-question">Where can I see the actual tests?</p>
           <p>The companion repository for this quick start guide can be found here <a href="https://github.com/simpulton/angularjs-testing-quick-start">https://github.com/simpulton/angularjs-testing-quick-start</a></p>
 
-          <h4 class="section-heading" id="unit-testing">Unit Testing vs E2E</h4>
+          <h3 class="section-heading" id="unit-testing">Unit Testing vs E2E</h3>
           <p class="section-question">How does Karma differ from Protractor?</p>
 
           <p>I like to split my tests up into three different categories:</p>
@@ -651,14 +651,14 @@
 
           <p>Protractor is the tool you will use for end-to-end tests while Karma handles integration and unit testing.</p>
 
-          <h4 class="section-heading" id="installing-karma">Installing Karma</h4>
+          <h3 class="section-heading" id="installing-karma">Installing Karma</h3>
           <p class="section-question">How do I install Karma?</p>
           <pre>
             <code class="js">npm install ­g karma</code>
           </pre>
 
 
-          <h4 class="section-heading" id="configuring-karma">Configuring Karma</h4>
+          <h3 class="section-heading" id="configuring-karma">Configuring Karma</h3>
           <p class="section-question">How do does Karma know which files to include?</p>
           <pre>
             <code class="js">karma init karma.conf.js</code>
@@ -704,7 +704,7 @@
               integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
           </ul>
 
-          <h4 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h4>
+          <h3 class="section-heading" id="basic-jasmine">Basic Jasmine Spec Structure</h3>
           <p class="section-question">How is a basic spec organized?</p>
 
           <p>
@@ -745,7 +745,7 @@
 
           <p>So, make sure the string values are descriptive.</p>
 
-          <h4 class="section-heading" id="including-module">Including a Module</h4>
+          <h3 class="section-heading" id="including-module">Including a Module</h3>
           <p class="section-question">How do I inject a module in a spec?</p>
 
           <p>The first thing your spec should do is define all the Angular modules that are needed for the tests in that spec. This is done using the
@@ -761,7 +761,7 @@
               <strong>beforeEach()</strong> instead of just
               <strong>before()</strong> so that each test is essentially running from a blank slate. If you don't do this, the state from a previous test may bleed into another test and affect the results.</p>
 
-            <h4 class="section-heading" id="testing-controller">Testing a Controller</h4>
+            <h3 class="section-heading" id="testing-controller">Testing a Controller</h3>
             <p class="section-question">How do I instantiate a controller in a spec?</p>
 
             <p>Here is our controller that we want to test:</p>
@@ -795,7 +795,7 @@
 
             <p><a href="https://docs.angularjs.org/api/ngMock/function/angular.mock.inject" targer="_blank">https://docs.angularjs.org/api/ngMock/function/angular.mock.inject</a></p>
 
-            <h4 class="section-heading" id="including-service">Including a Service</h4>
+            <h3 class="section-heading" id="including-service">Including a Service</h3>
             <p class="section-question">How do I inject a service in a spec?</p>
 
             <p>Testing an Angular service is a piece of cake. You can use the
@@ -810,7 +810,7 @@
             <p>As a best practice, we suggest injecting objects in
               <strong>beforeEach()</strong> and saving the object to a local variable. Then in the test we just reference that local variable.</p>
 
-            <h4 class="section-heading" id="testing-template">Testing a Template</h4>
+            <h3 class="section-heading" id="testing-template">Testing a Template</h3>
             <p class="section-question">How do I test if an element is in the DOM?</p>
 
             <p>The most tricky thing to test with Angular is code within templates. That is why you should try to reduce the amount of code in your templates as much as possible. Even if you are really good about this, though, you will always have some template
@@ -898,7 +898,7 @@
             </pre>
 
 
-            <h4 class="section-heading" id="testing-route">Testing a Route</h4>
+            <h3 class="section-heading" id="testing-route">Testing a Route</h3>
             <p class="section-question">How do I test route changes?</p>
 
             <p>Testing a route essentially means testing that we configured the UI router $stateProvider correctly during the config phase. For example, given the following state configuration:</p>
@@ -921,7 +921,7 @@
               </code>
             </pre>
 
-            <h4 class="section-heading" id="testing-directive">Testing a Directive</h4>
+            <h3 class="section-heading" id="testing-directive">Testing a Directive</h3>
             <p class="section-question">How do I set up a spec for a directive?</p>
 
             <p>Similar to how we test a template, we use the $compile service to help us test a directive. The key is to pass in a HTML snippet to
@@ -951,7 +951,7 @@
               <strong>$compile</strong>. For example, if the directive expects other attributes on the element or if you are testing a directive with transclusion (in which case you will want to put different snippets of HTML as children to the element that has
               the directive).</p>
 
-            <h4 class="section-heading" id="mocking">Mocking</h4>
+            <h3 class="section-heading" id="mocking">Mocking</h3>
             <p class="section-question">How/Why do I mock a service call in a controller spec?</p>
 
             <p>We mentioned at the beginning that you can create both unit tests and integration tests with Karma. When you are writing a unit test, your goal is to test just one thing and either eliminate or mock out all other dependencies. In general,
@@ -996,7 +996,7 @@
                 <strong>flush()</strong> will ensure that the
                 <strong>.then()</strong> on the promise returned from $http will be executed immediately.</p>
 
-              <h4 class="section-heading" id="spying-methods">Spying on Methods</h4>
+              <h3 class="section-heading" id="spying-methods">Spying on Methods</h3>
               <p class="section-question">How do I determine if one method successfully calls another method?
                 <br> How do I determine what arguments were included when I call a method?</p>
 
@@ -1015,7 +1015,7 @@
                 <strong>describe()</strong> or
                 <strong>it()</strong> function where it has been defined.</p>
 
-              <h4 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h4>
+              <h3 class="section-heading bottom-margin" id="advanced-spying">Advanced Spying</h3>
 
               <p>In addition to simply seeing if a spy has been called, we can also define what value the spy should return (using returnValue()) or what fake function the spy should run instead of the target function (using callFake()). For example:</p>
 
@@ -1040,7 +1040,7 @@
                 </code>
               </pre>
 
-              <h4 class="section-heading" id="testing-promise">Testing a Promise</h4>
+              <h3 class="section-heading" id="testing-promise">Testing a Promise</h3>
               <p class="section-question">How do I handle async operations in a spec?</p>
 
               <p>By default, each test runs synchronously. So, if you have any asynchronous operation, the test will complete before the operation completes. There are ways of handling specific use cases (for example
@@ -1060,13 +1060,13 @@
               <p>One last note on async operations. You may have noticed in our examples a call to
                 <strong>$rootScope.$digest()</strong>. This will force the digest cycle to run which is needed whenever we are testing anything athat involves watchers (so, anything with templates).</p>
 
-              <h4 class="section-heading" id="debugging">Debugging</h4>
+              <h3 class="section-heading" id="debugging">Debugging</h3>
               <p class="section-question">How do I troubleshoot problems with my specs?</p>
 
               <p>Spec code is run in the browser just like any other client side code. So, how do you debug your Angular app? That's right, the Chrome/FireFox dev tools. For example, after running Karma with Chrome there should be a Chrome window open on
                 your machine that contains the output of the test. To debug, simply open up the Chrome dev tools and refresh the page.</p>
 
-              <h4 class="section-heading" id="best-practices">Best Practices</h4>
+              <h3 class="section-heading" id="best-practices">Best Practices</h3>
               <p class="section-question">How do I know I am formatting my specs in the most efficient manner?</p>
 
               <p>Here is a quick list of best practices. Some of these we touched on earlier.</p>
@@ -1083,7 +1083,7 @@
                 <li>If you find yourself repeating the same code for many tests, refactor the common code into a helper function</li>
               </ul>
 
-              <h4 class="section-heading bottom-margin" id="resources">Resources</h4>
+              <h3 class="section-heading bottom-margin" id="resources">Resources</h3>
 
               <p>Pending</p>
         </div>

@@ -1,6 +1,62 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 @import "compass/css3";
+
+//COLOR
+$standard-padding: 20px;
+$blue01: #0085ff;
+$blue02: #26557f;
+$blue03: #00427f;
+$blue04: #4caaff;
+$blue05: #006acc;
+
+$tan01: #B26E00;
+$tan02: #FF9E00;
+
+html, body {
+  height: 100%;
+}
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #fff;
+
+    // background: url('http://www.designbolts.com/wp-content/uploads/2013/02/Light-aluminum-Grey-Seamless-Pattern-For-Website-Background.jpg');
+    position: relative;
+    color: #444;
+    font-size: 1.5rem;
+    letter-spacing: 0.05rem;
+  }
+
+//PAGE VARIABLES FOR LAYOUT
+.no-padding-h {padding-left: 0px; padding-right: 0px;}
+.no-padding-v {padding-top: 0px; padding-bottom: 0px;}
+
+// TYPE
+h1,h2,h3,h4,h5 {
+  color: $blue02;
+}
+.section-question {
+  color: $blue03;
+  padding-bottom: $standard-padding;
+  border-bottom: 1px dotted #595959;
+}
+
+// NAVIGATION
+#table-of-contents {
+  height: 100vh;
+  max-height: 100vh !important;
+  width: 35rem;
+  overflow: scroll;
+  ul {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: none;
+  }
+  li {
+    &:first-of-type {padding: 0px 0px 5px 0px;}
+    &.active {
+      a {background: $blue04; color: #ffffff}
+    }
+    a {
+      &:hover { text-decoration: underline; }//background: $tan01; color: $tan02;}
+    }
+   }
+}
