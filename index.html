@@ -458,6 +458,13 @@
   <script>
     var app = angular.module('Quickstart', []);
 
+    app.config(function ($locationProvider) {
+      $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
+      });
+    })
+
     app.directive('code', function ($timeout) {
       return {
         restrict: 'E',
