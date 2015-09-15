@@ -67,7 +67,8 @@
             do I instantiate my controller? What if it has a service dependency? Aaaaaaaaargh!</p>
           <p>I have since covered a lot of ground over the last couple years and I found that once you understand a few basic rules of engagement that testing in Angular is actually pretty straight forward and formulaic.</p>
           <p>I wanted to try to illustrate some of these basic patterns in an easy to read, approachable way so that developers can get to that first test without losing their mind</p>
-          <p>Please use this material as a bridge to making tests a natural part of your development process. Nothing would make me happier! Enjoy!</p>
+          <p>Please use this material as a bridge to making tests a natural part of your development process; and if you find something amiss, do not hesitate to create a pull request on the
+            <a href="https://github.com/simpulton/angular-testing-quick-start-guide">repo</a>. Nothing would make me happier! Enjoy!</p>
 
           <h3 class="section-heading" id="sample-project">The Sample Project</h3>
           <p class="section-question">Where can I see the actual tests?</p>
@@ -80,13 +81,13 @@
 
           <ol>
             <li>
-              <strong>End­-to-­End Tests</strong> - These are the tests where you want to mimic an actual user that visits your website. Each test contains a series of simulated user events (ex. go to http://mysite.com/home and then click on the button with ID
-              'my­-button') and expected results (ex. after 200ms a new window should appear that says "Thank You").</li>
+              <strong>End-to-End Tests</strong> - These are the tests where you want to mimic an actual user that visits your website. Each test contains a series of simulated user events (ex. go to http://mysite.com/home and then click on the button with ID
+              'my-button') and expected results (ex. after 200ms a new window should appear that says "Thank You").</li>
             <li>
-              <strong>Integration Tests</strong> ­ These tests will call directly into your code. For example, you can use an integration test to call an Angular service. Typically each test will focus on one function. The test calls the target function with
+              <strong>Integration Tests</strong> - These tests will call directly into your code. For example, you can use an integration test to call an Angular service. Typically each test will focus on one function. The test calls the target function with
               a set of parameters and then checks to make sure the results match expected values.</li>
             <li>
-              <strong>Unit Tests</strong> ­ These are the same as integration tests except you take extra steps toensure that nothing is executed besides the one function you are testing. For example, when you test a service that uses $http to call a back end
+              <strong>Unit Tests</strong> - These are the same as integration tests except you take extra steps toensure that nothing is executed besides the one function you are testing. For example, when you test a service that uses $http to call a back end
               API, an integration test would include the API call. A unit test, however, would use a utility we will discuss later called $httpBackend to replace $http so that the code executed by the test is restricted to just the target function.</li>
           </ol>
 
@@ -95,7 +96,7 @@
           <h3 class="section-heading" id="installing-karma">Installing Karma</h3>
           <p class="section-question">How do I install Karma?</p>
           <pre>
-            <code class="js">npm install ­g karma</code>
+            <code class="js">npm install -g karma</code>
           </pre>
 
 
@@ -125,15 +126,15 @@
           <p>Note that most values in the karma.conf file can be overridden at the command line. For example, if you wanted to run Firefox instead of Chrome you could either change the value in karma.conf or keep the value the same and use this command:</p>
 
           <pre>
-            <code lang="js">karma start ­­browsers Firefox</code>
+            <code lang="js">karma start --browsers Firefox</code>
           </pre>
 
           <p>I strongly suggest you take an existing karma.conf file like this one and adapt it to meet your needs. As long as you follow the conventions we outline in this guide, the only things you will likely want to change are:</p>
 
           <ul>
-            <li>files ­ to include all your custom code, dependencies and test code</li>
-            <li>reporters ­ if you want test coverage you will need to include the 'coverage' reporter</li>
-            <li>autoWatch and singleRun ­ most of the time you will want autoWatch=true and singleRun=false so that Karma will automatically re­run your tests as you make changes. However, if you are running Karma as part of a script like a git hook or continuous
+            <li>files - to include all your custom code, dependencies and test code</li>
+            <li>reporters - if you want test coverage you will need to include the 'coverage' reporter</li>
+            <li>autoWatch and singleRun - most of the time you will want autoWatch=true and singleRun=false so that Karma will automatically re-run your tests as you make changes. However, if you are running Karma as part of a script like a git hook or continuous
               integration, then you will want to flip these two boolean values so that Karma only runs the tests once.</li>
           </ul>
 
@@ -144,7 +145,7 @@
             <em>File Structure</em>
           </p>
 
-          <p>In general, you want to have one test file for each and every non­test code file in your app. You should have a common naming scheme so that your build tools and test runners can pick out test files from non­test files. We are using one of the
+          <p>In general, you want to have one test file for each and every non-test code file in your app. You should have a common naming scheme so that your build tools and test runners can pick out test files from non-test files. We are using one of the
             most common test file naming schemes: "{filename}.spec.js". So if you have a code file called "app.js", the file that contains all the tests for app.js would be called "app.spec.js". You will often see all test files in a separate directory
             from the rest of the code (usually called 'test'), but in the sample code we have put all specs right along side the code they are testing for your convenience.</p>
 
@@ -198,7 +199,7 @@
             </pre>
 
             <p>The
-              <strong>angular­-mocks</strong> library provides a service called
+              <strong>angular-mocks</strong> library provides a service called
               <strong>$controller</strong> that we can use to help us test our controllers. In the
               <strong>beforeEach()</strong> below, we are injecting
               <strong>$controller</strong> along with any other dependencies we need to instantiate our controller.</p>
@@ -341,7 +342,7 @@
 
               <p>There is one special case with mocking where Angular helps you out. Whenever you use
                 <strong>$http</strong> to make a remote call, Angular has another service behind the scenes called
-                <strong>$httpBackend</strong> that actually does all the hard work. The angular­mocks library has its own version of
+                <strong>$httpBackend</strong> that actually does all the hard work. The angular-mocks library has its own version of
                 <strong>$httpBackend</strong> with a number of goodies to help us mock out calls to the back end. For example look at this code which makes an
                 <strong>$http</strong> call:</p>
 
