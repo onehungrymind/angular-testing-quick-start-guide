@@ -384,7 +384,7 @@ header {
       height: 26px;
       margin: 0 18px; }
   header .open-nav {
-    background-image: url(/images/menu.svg);
+    background-image: url(images/menu.svg);
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 100%;
