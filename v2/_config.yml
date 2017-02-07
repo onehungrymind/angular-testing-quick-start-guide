@@ -1,0 +1,36 @@
+# ----
+# Site
+
+title: OHM Tutorial Template
+description: A template for OneHungryMind endeavours.
+url: https://example.com
+google_analytics_key:
+permalink: pretty
+
+collections:
+  components:
+    title: Components
+    position: 1
+  isolated:
+    title: Isolated
+    position: 2
+gems:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+exclude:
+  - readme.md
+  - LICENCE
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: default
+
+types:
+  - get
+  - put
+  - delete
+  - post
